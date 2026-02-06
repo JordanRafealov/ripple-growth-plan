@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ripple Content Partnership — Dopamine Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0c0c14;
+  --card: #16162a;
+  --card-border: rgba(255,255,255,0.08);
+  --accent: #7c3aed;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --text: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --radius: 16px;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.deck { width: 100%; height: 100%; position: relative; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+  overflow-y: auto;
+  padding: 50px 40px 80px;
+}
+.slide.active { opacity: 1; pointer-events: auto; }
+.slide.center-v { align-items: center; }
+
+.slide::-webkit-scrollbar { width: 6px; }
+.slide::-webkit-scrollbar-track { background: transparent; }
+.slide::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 3px; }
+.slide::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.5); }
+
+.slide-inner {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 { font-family: 'Inter', sans-serif; font-weight: 700; line-height: 1.15; }
+h1 { font-size: 52px; letter-spacing: -0.02em; margin-bottom: 16px; text-wrap: balance; }
+h2 { font-size: 44px; letter-spacing: -0.02em; margin-bottom: 16px; }
+h3 { font-size: 28px; margin-bottom: 12px; }
+h4 { font-size: 22px; margin-bottom: 8px; font-weight: 600; }
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.subtitle { font-size: 22px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 24px; font-weight: 400; }
+
+.playfair-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-amber { color: var(--amber); }
+strong { font-weight: 700; }
+s { color: var(--text-secondary); text-decoration: line-through; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 36px;
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+.card:hover {
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.card-sm { padding: 24px; }
+.card-red { border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.05); }
+.card-green { border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.05); }
+.card-violet { border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.06); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li {
+  padding: 10px 0 10px 28px;
+  position: relative;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 18px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.bullet-list.green li::before { background: var(--green); }
+.bullet-list.red li::before { background: var(--red); }
+.bullet-list.amber li::before { background: var(--amber); }
+
+.check-list, .x-list { list-style: none; padding: 0; }
+.check-list li, .x-list li {
+  padding: 8px 0 8px 32px;
+  position: relative;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.check-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0; top: 8px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 18px;
+}
+.x-list li::before {
+  content: '\2717';
+  position: absolute;
+  left: 0; top: 8px;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.proof-img {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  display: block;
+  width: 100%;
+}
+
+.img-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+.img-row img { width: 100%; max-width: 100%; }
+
+.video-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  display: block;
+  width: 100%;
+  background: #000;
+}
+.video-wrap iframe { display: block; width: 100%; aspect-ratio: 16/9; height: auto; border: none; }
+
+.quote-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.quote-card p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.gap-section { margin-bottom: 24px; }
+.gap-section h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.gap-section p { font-size: 17px; color: var(--text-secondary); line-height: 1.6; }
+
+.question-list { list-style: none; padding: 0; }
+.question-list li {
+  padding: 12px 0 12px 28px;
+  position: relative;
+  font-size: 17px;
+  line-height: 1.5;
+  font-style: italic;
+}
+.question-list li::before {
+  content: '?';
+  position: absolute;
+  left: 0; top: 12px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.stat { text-align: center; padding: 28px 20px; }
+.stat .num { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+.stat .label { font-size: 16px; color: var(--text-secondary); line-height: 1.4; }
+
+.funnel-step { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 16px; }
+.funnel-step .arrow { color: var(--text-secondary); font-size: 14px; }
+.funnel-highlight {
+  padding: 10px 16px;
+  background: rgba(124,58,237,0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(124,58,237,0.2);
+  font-weight: 600;
+}
+
+details {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+details summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: '\25B6';
+  font-size: 12px;
+  color: var(--accent);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+details[open] summary::before { transform: rotate(90deg); }
+details .detail-body {
+  padding: 0 24px 20px 48px;
+}
+details .detail-body li {
+  font-size: 16px;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  line-height: 1.5;
+  position: relative;
+  list-style: none;
+}
+details .detail-body ul {
+  list-style: none;
+  padding: 0;
+}
+
+.value-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.value-line:last-child { border-bottom: none; }
+
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-align: center;
+  position: relative;
+}
+.pricing-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(124,58,237,0.12);
+}
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 20px;
+  border-radius: 20px;
+}
+.price-big { font-size: 52px; font-weight: 700; margin: 16px 0 8px; }
+.price-strike { font-size: 24px; color: var(--text-secondary); text-decoration: line-through; }
+
+.tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tl-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  position: relative;
+}
+.tl-card.tl-full { grid-column: 1 / -1; border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
+.tl-card h4 { font-size: 18px; margin-bottom: 12px; }
+.tl-card li { font-size: 15px; color: var(--text-secondary); padding: 3px 0; line-height: 1.5; list-style: none; }
+.tl-card ul { list-style: none; padding: 0; }
+.tl-card .tl-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.tl-badge-purple { background: rgba(124,58,237,0.15); color: var(--accent); }
+.tl-badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+.tl-badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.tl-card .milestone { color: var(--green); font-weight: 600; font-style: italic; }
+
+.glow-card {
+  background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(34,197,94,0.08) 100%);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(124,58,237,0.08);
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  border-radius: 2px;
+  margin: 0 auto 32px;
+}
+
+.gap-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px 0;
+}
+.gap-box {
+  text-align: center;
+  padding: 28px 32px;
+  border-radius: var(--radius);
+  min-width: 180px;
+}
+.gap-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.bonus-value { font-size: 20px; font-weight: 700; color: var(--accent); }
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.faq-item summary {
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  color: var(--text-secondary);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before {
+  content: '+';
+  font-size: 16px;
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+.faq-item[open] summary::before { content: '\2212'; }
+.faq-item[open] summary { color: var(--text); }
+.faq-item .faq-body {
+  padding: 0 20px 16px 40px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.nav-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(12,12,20,0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  z-index: 100;
+}
+.nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: all 200ms ease;
+  flex-shrink: 0;
+}
+.nav-dot.active { background: var(--accent); transform: scale(1.3); }
+.nav-counter {
+  position: fixed;
+  bottom: 54px;
+  right: 40px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  z-index: 100;
+  font-variant-numeric: tabular-nums;
+}
+
+.mb-4 { margin-bottom: 4px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-40 { margin-bottom: 40px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.small { font-size: 14px; }
+.muted { color: var(--text-secondary); opacity: 0.6; }
+
+@media (max-width: 1024px) {
+  .slide { padding: 40px 24px 80px; }
+  h1 { font-size: 40px; }
+  h2 { font-size: 36px; }
+  .grid-2, .grid-3, .tl-grid { grid-template-columns: 1fr; }
+  .tl-card.tl-full { grid-column: auto; }
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide center-v active" data-slide="1">
+<div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
+  <p class="eyebrow mb-24" style="font-size:15px; letter-spacing:0.2em;">DOPAMINE DIGITAL</p>
+  <h1 style="font-size:48px; margin-bottom:20px;">Ripple &times; Dopamine Digital<br><span class="text-accent">Content &amp; Sales Enablement</span> Partnership</h1>
+  <p class="subtitle" style="max-width:700px; margin:0 auto 40px;">A 90-day content engine to give Ripple the conversion layer, authority positioning, and automated systems it needs to scale</p>
+  <p class="playfair-quote" style="max-width:550px; margin:0 auto 40px; font-size:20px;">"Built specifically for Adrian, Jonny &amp; the Ripple team"</p>
+  <p class="small muted">February 2026</p>
+</div>
+</div>
+
+<!-- SLIDE 2: WHERE WE STAND -->
+<div class="slide" data-slide="2">
+<div class="slide-inner">
+  <p class="eyebrow">Context</p>
+  <h2 class="mb-32">🔍 Where We Stand</h2>
+
+  <div class="grid-2 mb-32">
+    <div class="card card-green card-sm">
+      <h4 class="text-green mb-12">What&rsquo;s Working</h4>
+      <ul class="check-list">
+        <li>Product-market fit &mdash; 99%+ accuracy, real logistics operators using Ripple daily</li>
+        <li>Strong founding team with deep domain expertise</li>
+        <li>Running LinkedIn outreach + Google PPC in-house</li>
+        <li>Previous partnership with DD &mdash; 3x closed deals in 60 days</li>
+        <li>Clear ICP: logistics operators, freight forwarders, mid-market supply chain</li>
+      </ul>
+    </div>
+    <div class="card card-red card-sm">
+      <h4 class="text-red mb-12">What Needs Addressing</h4>
+      <ul class="x-list">
+        <li>No sales enablement video &mdash; prospects can&rsquo;t self-educate before calls</li>
+        <li>Zero content presence &mdash; no thought leadership, no authority</li>
+        <li>No automated follow-up &mdash; leads from PPC/LinkedIn go cold</li>
+        <li>No newsletter or nurture system &mdash; warm leads disappear</li>
+        <li>Traffic converts poorly without a conversion layer (VSL)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-violet card-sm">
+    <p style="font-size:17px; text-align:center;"><strong>The Opportunity:</strong> Ripple&rsquo;s product is exceptional. The missing piece isn&rsquo;t more traffic &mdash; it&rsquo;s a <strong class="text-accent">conversion layer</strong> and <strong class="text-accent">content engine</strong> that turns that traffic into educated, ready-to-buy prospects.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 3: CASE STUDY — CREATESTUDIO -->
+<div class="slide" data-slide="3">
+<div class="slide-inner">
+  <p class="eyebrow">Case Study</p>
+  <h2 class="mb-4">CreateStudio</h2>
+  <p class="text-secondary mb-24" style="font-size:20px;">AI Explainer Video Creator</p>
+
+  <div class="quote-card mb-24">
+    <p>"Created a sales funnel that generated $3M+ in revenue, increasing enterprise value and enabling a multiple 7-figure exit"</p>
+  </div>
+
+  <div class="mb-24">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/BExJ1GF4SOU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <ul class="bullet-list mb-24">
+    <li>Increased revenue by <strong>$600,000/month</strong> in under 12 months</li>
+    <li>Built top 5 performing YouTube ads in their category</li>
+    <li>Presented live webinar to <strong>2,000 concurrent viewers</strong></li>
+    <li>Generated <strong>$100,000 from stage</strong> and <strong>$336,000 total</strong> from a single campaign</li>
+    <li>Led the offer, ad, and funnel rebuild that enabled a <strong>7-figure exit</strong></li>
+  </ul>
+
+  <div class="img-row">
+    <img src="assets/createstudio_3.png" alt="CreateStudio $100K weekend" class="proof-img">
+    <img src="assets/createstudio_5.png" alt="CreateStudio $336K total revenue" class="proof-img">
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 4: CASE STUDY — MEDIAPLACE AI -->
+<div class="slide" data-slide="4">
+<div class="slide-inner">
+  <p class="eyebrow">Case Study</p>
+  <h2 class="mb-4">MediaPlace AI</h2>
+  <p class="text-secondary mb-24" style="font-size:20px;">All-in-One AI Media Manager</p>
+
+  <div class="quote-card mb-24">
+    <p>"Multiple 6-figures in revenue, one of the highest rated softwares on AppSumo, and 500+ 5-star TrustPilot reviews"</p>
+  </div>
+
+  <div class="mb-24">
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/QD2SKEXf3xM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <ul class="bullet-list mb-24">
+    <li>Launched go-to-market strategy that generated <strong>multiple 6-figures</strong></li>
+    <li>Achieved <strong>#1 rated software</strong> on AppSumo in its category</li>
+    <li>Built <strong>500+ five-star reviews</strong> on TrustPilot</li>
+    <li>Created complete sales funnel, marketing campaigns, and sales assets</li>
+  </ul>
+
+  <div class="img-row">
+    <img src="assets/mediaplace_0.png" alt="MediaPlace proof 1" class="proof-img">
+    <img src="assets/mediaplace_3.png" alt="MediaPlace proof 2" class="proof-img">
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 5: THE CHALLENGE -->
+<div class="slide" data-slide="5">
+<div class="slide-inner">
+  <p class="eyebrow">The Challenge</p>
+  <h2 class="mb-8">❌ Great Product &ne; Great Pipeline</h2>
+  <p class="subtitle">Why Ripple&rsquo;s conversion layer is the bottleneck</p>
+
+  <div class="grid-2 mb-32">
+    <div class="card card-sm">
+      <h4 class="mb-12">What Ripple Has</h4>
+      <ul class="check-list">
+        <li>AI platform with 99%+ accuracy</li>
+        <li>Real customers using it daily</li>
+        <li>Deep domain expertise in logistics</li>
+        <li>Running LinkedIn + Google PPC</li>
+        <li>Strong founding team</li>
+      </ul>
+    </div>
+    <div class="card card-sm">
+      <h4 class="mb-12">What&rsquo;s Missing</h4>
+      <ul class="x-list">
+        <li>No video that explains the product clearly</li>
+        <li>No content building authority in the market</li>
+        <li>No automated nurture for cold leads</li>
+        <li>No conversion layer for paid traffic</li>
+        <li>No system to repurpose Adrian&rsquo;s expertise</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-red card-sm" style="text-align:center;">
+    <p style="font-size:18px;"><strong>You&rsquo;re driving traffic to a dead end.</strong> Without a VSL, content presence, and automated follow-up &mdash; every click is wasted budget.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 6: GAP 1 — NO SALES ENABLEMENT -->
+<div class="slide" data-slide="6">
+<div class="slide-inner">
+  <p class="eyebrow">Gap Analysis</p>
+  <h2 class="mb-32">⚠️ Gap #1: No Sales Enablement Video</h2>
+
+  <div class="gap-section">
+    <h4>The Situation</h4>
+    <p>Ripple&rsquo;s product is complex &mdash; AI operations that automate manual logistics workflows across disconnected systems (TMSs, WMSs, CRMs, ERPs). That&rsquo;s incredibly powerful, but it&rsquo;s hard to explain in a LinkedIn message or a Google ad.</p>
+  </div>
+
+  <div class="gap-section">
+    <h4>The Root Cause</h4>
+    <p>Without a VSL (Video Sales Letter), prospects have no way to self-educate before getting on a call. They land on the website, see text-heavy pages, and bounce. The ones who DO book calls come in cold &mdash; the first 15 minutes of every call is spent explaining what Ripple actually does.</p>
+  </div>
+
+  <div class="card card-red card-sm mb-24">
+    <h4 class="text-red">The Cost</h4>
+    <p style="font-size:17px;">Every prospect who visits the site without a VSL has a <strong>60-70% higher chance of bouncing</strong>. If Ripple&rsquo;s Google PPC is driving even 200 visitors/month at &pound;5/click, that&rsquo;s <strong>&pound;600-700/month in wasted ad spend</strong> on visitors who never convert &mdash; because there&rsquo;s no video to hook them.</p>
+  </div>
+
+  <div class="card card-violet card-sm">
+    <h4>Questions to Consider</h4>
+    <ul class="question-list">
+      <li>How many prospects drop off before ever getting on a call because they don&rsquo;t fully understand the product?</li>
+      <li>How much time is Adrian spending on calls explaining basics that a VSL could handle?</li>
+      <li>What would it mean if every prospect who booked a call was already 80% sold before they showed up?</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 7: GAP 2 — ZERO CONTENT PRESENCE -->
+<div class="slide" data-slide="7">
+<div class="slide-inner">
+  <p class="eyebrow">Gap Analysis</p>
+  <h2 class="mb-32">⚠️ Gap #2: Zero Content Presence</h2>
+
+  <div class="gap-section">
+    <h4>The Situation</h4>
+    <p>Ripple is building one of the most interesting AI products in logistics &mdash; but the market doesn&rsquo;t know it. There&rsquo;s no regular content, no thought leadership, no LinkedIn presence, no newsletter. Adrian has deep expertise that&rsquo;s locked in his head and in private conversations.</p>
+  </div>
+
+  <div class="gap-section">
+    <h4>The Root Cause</h4>
+    <p>Content takes time, and the team is focused on product and sales. There&rsquo;s no system to capture Adrian&rsquo;s knowledge and turn it into content at scale. Recording a 10-minute Loom is easy &mdash; but without a team to repurpose it into 5 LinkedIn clips, a newsletter, and SEO content, nothing gets published.</p>
+  </div>
+
+  <div class="card card-red card-sm mb-24">
+    <h4 class="text-red">The Cost</h4>
+    <p style="font-size:17px;">Content compounds. Every month without publishing is a month where competitors build authority and Ripple doesn&rsquo;t. In 90 days, a competitor publishing weekly will have <strong>12+ pieces of content ranking, building trust, and generating inbound</strong> &mdash; while Ripple has zero.</p>
+  </div>
+
+  <div class="card card-violet card-sm">
+    <h4>Questions to Consider</h4>
+    <ul class="question-list">
+      <li>When a logistics operator searches for AI automation solutions, does Ripple show up anywhere?</li>
+      <li>How many prospects Google Ripple and find nothing beyond the homepage?</li>
+      <li>What would it mean for sales if Adrian was seen as THE voice of AI in logistics?</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 8: GAP 3 — NO AUTOMATED FOLLOW-UP -->
+<div class="slide" data-slide="8">
+<div class="slide-inner">
+  <p class="eyebrow">Gap Analysis</p>
+  <h2 class="mb-32">⚠️ Gap #3: No Automated Follow-Up</h2>
+
+  <div class="gap-section">
+    <h4>The Situation</h4>
+    <p>Leads come in from LinkedIn, Google PPC, and conversations &mdash; but there&rsquo;s no automated system to nurture them. A prospect who isn&rsquo;t ready today might be ready in 6 weeks, but without a nurture sequence, they forget about Ripple entirely.</p>
+  </div>
+
+  <div class="gap-section">
+    <h4>The Root Cause</h4>
+    <p>No newsletter. No email automation. No AI-powered lead response system. Every follow-up is manual, which means it happens inconsistently &mdash; or not at all. The team is too busy building the product to chase leads.</p>
+  </div>
+
+  <div class="card card-red card-sm mb-24">
+    <h4 class="text-red">The Cost</h4>
+    <p style="font-size:17px;">Enterprise B2B sales cycles in logistics average <strong>3-6 months</strong>. Without automated nurture, every lead that doesn&rsquo;t close immediately is a dead lead. If just 2 leads per month go cold that could have been nurtured into deals, that&rsquo;s <strong>&pound;24,000-48,000/year in lost revenue</strong> (at &pound;12-24K LTV).</p>
+  </div>
+
+  <div class="card card-violet card-sm">
+    <h4>Questions to Consider</h4>
+    <ul class="question-list">
+      <li>How many leads have expressed interest but never followed through?</li>
+      <li>What happens to a prospect who says &ldquo;not right now&rdquo; &mdash; do they ever hear from Ripple again?</li>
+      <li>What would it mean if warm leads received valuable content automatically, keeping Ripple top-of-mind until they&rsquo;re ready?</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 9: COST OF INACTION -->
+<div class="slide" data-slide="9">
+<div class="slide-inner">
+  <h2 class="mb-12">💰 Cost of Inaction</h2>
+  <div class="section-divider"></div>
+
+  <div class="gap-visual mb-32">
+    <div class="gap-box card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
+      <p class="small text-secondary mb-4">Current State</p>
+      <p class="text-red" style="font-size:28px; font-weight:700;">No Content Layer</p>
+      <p class="small text-secondary mt-12">Traffic converts poorly<br>Leads go cold<br>Zero authority</p>
+    </div>
+    <div class="gap-arrow">
+      <span>&rarr;</span>
+      <span style="font-size:12px; color:var(--text-secondary);">every month<br>without action</span>
+    </div>
+    <div class="gap-box card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
+      <p class="small text-secondary mb-4">Compounding Loss</p>
+      <p class="text-red" style="font-size:28px; font-weight:700;">&pound;36K-72K</p>
+      <p class="small text-secondary mt-12">Lost revenue per year<br>from missing conversion<br>layer + nurture</p>
+    </div>
+  </div>
+
+  <div class="grid-3 mb-32">
+    <div class="card card-sm stat">
+      <div class="num text-red">&pound;12-24K</div>
+      <div class="label">Average Customer LTV</div>
+    </div>
+    <div class="card card-sm stat">
+      <div class="num text-amber">2-4</div>
+      <div class="label">Deals lost per year<br>without nurture system</div>
+    </div>
+    <div class="card card-sm stat">
+      <div class="num text-red">&pound;36-72K</div>
+      <div class="label">Annual revenue lost<br>from inaction</div>
+    </div>
+  </div>
+
+  <div class="card card-red card-sm" style="text-align:center;">
+    <p style="font-size:18px;"><strong>The real cost isn&rsquo;t just lost deals.</strong> It&rsquo;s the compounding effect &mdash; every month without content is a month where competitors build authority, capture attention, and take market share that Ripple should own.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 10: THE PARTNERSHIP — THREE PILLARS -->
+<div class="slide" data-slide="10">
+<div class="slide-inner">
+  <h2 class="mb-12">🚀 The Partnership</h2>
+  <div class="section-divider"></div>
+  <p class="subtitle text-center" style="max-width:700px; margin:0 auto 40px;">Three pillars to give Ripple a conversion layer, content engine, and automated systems &mdash; in 90 days.</p>
+
+  <div class="grid-3">
+    <div class="card card-sm text-center" style="border-top: 3px solid var(--accent);">
+      <h3 class="text-accent mb-8">Pillar 1</h3>
+      <h4 class="mb-12">VSL &amp; Sales Enablement</h4>
+      <p class="text-secondary" style="font-size:16px;">A professional video that sells Ripple 24/7 &mdash; so every prospect arrives educated and ready to buy</p>
+    </div>
+    <div class="card card-sm text-center" style="border-top: 3px solid var(--green);">
+      <h3 class="text-green mb-8">Pillar 2</h3>
+      <h4 class="mb-12">Weekly Content Engine</h4>
+      <p class="text-secondary" style="font-size:16px;">Adrian records a Loom. We turn it into 5+ LinkedIn clips, blog posts, and social content &mdash; every week</p>
+    </div>
+    <div class="card card-sm text-center" style="border-top: 3px solid var(--amber);">
+      <h3 class="text-amber mb-8">Pillar 3</h3>
+      <h4 class="mb-12">AI-Powered Systems</h4>
+      <p class="text-secondary" style="font-size:16px;">Automated newsletter, AI lead response, and analytics &mdash; so nothing falls through the cracks</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 11: PILLAR 1 — VSL & SALES ENABLEMENT -->
+<div class="slide" data-slide="11">
+<div class="slide-inner">
+  <p class="eyebrow">Pillar 1</p>
+  <h2 class="mb-32">🎯 VSL &amp; Sales Enablement</h2>
+
+  <details open>
+    <summary>Why a VSL Changes Everything</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">A Video Sales Letter is the single highest-leverage asset for a complex B2B product like Ripple. It does three things:</p>
+      <ul>
+        <li><strong>Educates</strong> &mdash; Prospects understand what Ripple does before they ever talk to sales</li>
+        <li><strong>Qualifies</strong> &mdash; Only people who resonate with the message book calls</li>
+        <li><strong>Sells</strong> &mdash; By the time someone gets on a call, they&rsquo;re 80% convinced</li>
+      </ul>
+      <p style="margin-top:12px; color:var(--green); font-weight:600;">Result: shorter sales cycles, higher close rates, less time explaining basics on calls.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What We Deliver</summary>
+    <div class="detail-body">
+      <ul>
+        <li><strong>Discovery &amp; Strategy Session</strong> &mdash; Deep-dive into Ripple&rsquo;s positioning, ICP pain points, and competitive landscape</li>
+        <li><strong>Full VSL Script</strong> &mdash; Problem &rarr; Agitate &rarr; Solution &rarr; Proof &rarr; CTA framework, optimised for logistics buyers</li>
+        <li><strong>Storyboard &amp; Creative Direction</strong> &mdash; Visual flow, b-roll suggestions, on-screen text overlays</li>
+        <li><strong>Production Guidance</strong> &mdash; Recording checklist, lighting/audio setup, editing notes</li>
+        <li><strong>Landing Page Structure</strong> &mdash; VSL placement, supporting copy, CTA positioning</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>How It Fits Your Current Setup</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">The VSL becomes the conversion layer for ALL your traffic channels:</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+          <strong>LinkedIn</strong><br><span style="color:var(--text-secondary);">Outreach clicks</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+          <strong>Google PPC</strong><br><span style="color:var(--text-secondary);">Ad traffic</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+          <strong style="color:var(--accent);">VSL</strong><br><span style="color:var(--text-secondary);">Conversion layer</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+          <strong style="color:var(--green);">Booked Call</strong><br><span style="color:var(--text-secondary);">Educated buyer</span>
+        </div>
+      </div>
+      <p style="margin-top:12px;">Every pound you spend on LinkedIn and Google PPC becomes <strong>more effective</strong> because the VSL does the heavy lifting of education and persuasion.</p>
+    </div>
+  </details>
+</div>
+</div>
+
+<!-- SLIDE 12: PILLAR 2 — WEEKLY CONTENT ENGINE -->
+<div class="slide" data-slide="12">
+<div class="slide-inner">
+  <p class="eyebrow">Pillar 2</p>
+  <h2 class="mb-32">⚡ Weekly Content Engine</h2>
+
+  <details open>
+    <summary>How It Works</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:16px;">Adrian records <strong>one 10-15 minute Loom per week</strong>. That&rsquo;s it. We handle everything else:</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+          <strong>Adrian</strong><br><span style="color:var(--text-secondary);">Records Loom</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+          <strong>We Edit</strong><br><span style="color:var(--text-secondary);">5 short clips</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+          <strong>We Write</strong><br><span style="color:var(--text-secondary);">Posts &amp; captions</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+          <strong>We Publish</strong><br><span style="color:var(--text-secondary);">LinkedIn + social</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+          <strong style="color:var(--green);">Authority</strong><br><span style="color:var(--text-secondary);">Builds weekly</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>What You Get Every Week</summary>
+    <div class="detail-body">
+      <ul>
+        <li><strong>5 short-form video clips</strong> &mdash; Formatted for LinkedIn, Twitter/X, and Instagram (subtitles, branded overlays, hooks)</li>
+        <li><strong>5 written LinkedIn posts</strong> &mdash; Thought leadership, insights, and engagement drivers</li>
+        <li><strong>1 long-form blog post</strong> &mdash; SEO-optimised article from the Loom content</li>
+        <li><strong>Content calendar</strong> &mdash; Planned topics, posting schedule, and engagement strategy</li>
+        <li><strong>Weekly strategy call</strong> &mdash; 30 min to review performance, plan next topics, and adjust</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>The Compounding Effect</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">Content isn&rsquo;t a campaign &mdash; it&rsquo;s compound interest for your brand:</p>
+      <div class="grid-3" style="margin-top:12px;">
+        <div class="card card-sm text-center" style="padding:16px;">
+          <p style="font-size:28px; font-weight:700; color:var(--accent);">Month 1</p>
+          <p class="text-secondary small">Foundation built. VSL live. First 4 weeks of content published. LinkedIn engagement begins.</p>
+        </div>
+        <div class="card card-sm text-center" style="padding:16px;">
+          <p style="font-size:28px; font-weight:700; color:var(--amber);">Month 2</p>
+          <p class="text-secondary small">20+ pieces of content live. Organic reach growing. Inbound DMs start. SEO indexing.</p>
+        </div>
+        <div class="card card-sm text-center" style="padding:16px;">
+          <p style="font-size:28px; font-weight:700; color:var(--green);">Month 3</p>
+          <p class="text-secondary small">40+ pieces live. Adrian recognised as a thought leader. Inbound leads. Newsletter driving repeat visits.</p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Proof: Content in Action</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">This is exactly the system we run for our other clients &mdash; podcast recordings turned into social content:</p>
+      <div class="img-row" style="margin-top:12px;">
+        <img src="assets/podcast_linkedin_content.png" alt="LinkedIn content examples" class="proof-img">
+        <img src="assets/podcast_youtube_content.png" alt="YouTube content examples" class="proof-img">
+      </div>
+      <p style="margin-top:12px;">Same system, applied to Ripple&rsquo;s Loom recordings instead of podcast episodes.</p>
+    </div>
+  </details>
+</div>
+</div>
+
+<!-- SLIDE 13: PILLAR 3 — AI-POWERED SYSTEMS -->
+<div class="slide" data-slide="13">
+<div class="slide-inner">
+  <p class="eyebrow">Pillar 3</p>
+  <h2 class="mb-32">🤖 AI-Powered Systems</h2>
+
+  <details open>
+    <summary>Auto-Newsletter System</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">A monthly email newsletter powered by ActiveCampaign (&pound;80/mo) that automatically compiles your best content and sends it to your subscriber list:</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>Content Created</strong><br><span style="color:var(--text-secondary);">Weekly clips &amp; posts</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>AI Curates</strong><br><span style="color:var(--text-secondary);">Best-of monthly digest</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>Auto-Sends</strong><br><span style="color:var(--text-secondary);">To subscriber list</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong style="color:var(--green);">Nurtures Leads</strong><br><span style="color:var(--text-secondary);">Keeps Ripple top-of-mind</span>
+        </div>
+      </div>
+      <ul>
+        <li>No work required from your team &mdash; fully automated</li>
+        <li>Keeps your warm leads engaged between touchpoints</li>
+        <li>Builds subscriber list as content reaches new audiences</li>
+        <li>CTA in every newsletter drives bookings</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>AI-Powered YouTube Lead Response (Bonus)</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">Our proprietary system that automatically qualifies and responds to inbound leads &mdash; included free as a bonus (&pound;1,500 value):</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>Lead Comes In</strong><br><span style="color:var(--text-secondary);">Form / email / DM</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>AI Qualifies</strong><br><span style="color:var(--text-secondary);">Reads &amp; classifies</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong>Auto-Responds</strong><br><span style="color:var(--text-secondary);">Personalised reply</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
+          <strong style="color:var(--green);">Books Call</strong><br><span style="color:var(--text-secondary);">Under 60 seconds</span>
+        </div>
+      </div>
+      <ul>
+        <li>Responds to inbound leads in <strong>under 60 seconds</strong> &mdash; 10x faster than human response</li>
+        <li>AI classifies leads as Qualified, Needs Clarification, or Not a Fit</li>
+        <li>Qualified leads get instant booking link &mdash; no manual follow-up needed</li>
+        <li>Slack notification for human oversight &mdash; you stay in control</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Weekly Strategy Calls &amp; Reporting</summary>
+    <div class="detail-body">
+      <ul>
+        <li><strong>30-minute weekly call</strong> with your dedicated strategist</li>
+        <li>Content performance review (views, engagement, reach)</li>
+        <li>Next week&rsquo;s content topics planned and approved</li>
+        <li>Pipeline impact tracking &mdash; connecting content to conversations</li>
+        <li>Monthly analytics report with clear ROI metrics</li>
+      </ul>
+    </div>
+  </details>
+</div>
+</div>
+
+<!-- SLIDE 14: IMMEDIATE WIN — LINKEDIN LIVE -->
+<div class="slide" data-slide="14">
+<div class="slide-inner">
+  <p class="eyebrow">Immediate Win</p>
+  <h2 class="mb-32">📡 LinkedIn Live: Survive &amp; Thrive in 2026</h2>
+
+  <div class="card card-violet card-sm mb-24" style="text-align:center;">
+    <p style="font-size:20px; font-weight:600; margin-bottom:8px;">February 26, 2026</p>
+    <p class="text-secondary" style="font-size:17px;">Target: <strong class="text-accent">150 registrations</strong> from logistics operators</p>
+  </div>
+
+  <div class="grid-2 mb-24">
+    <div class="card card-sm">
+      <h4 class="mb-12">What We Do</h4>
+      <ul class="check-list">
+        <li>LinkedIn outreach campaign targeting logistics decision-makers</li>
+        <li>Personalised invitations from Ripple&rsquo;s LinkedIn profiles</li>
+        <li>Follow-up sequence for registrants</li>
+        <li>Event promotion content for LinkedIn feed</li>
+        <li>Post-event follow-up to convert attendees</li>
+      </ul>
+    </div>
+    <div class="card card-sm">
+      <h4 class="mb-12">Why It Matters</h4>
+      <ul class="bullet-list">
+        <li>Generates a <strong>warm list</strong> of 150+ logistics operators who know Ripple</li>
+        <li>Positions Adrian as a thought leader in one event</li>
+        <li>Attendees become <strong>warm leads</strong> for sales follow-up</li>
+        <li>Content from the event feeds the content engine for weeks</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-green card-sm" style="text-align:center;">
+    <p style="font-size:17px;"><strong>Conservative math:</strong> 150 registrations &rarr; 75 attend &rarr; 15 express interest &rarr; <strong class="text-green">3-5 qualified conversations</strong> &rarr; at &pound;12-24K LTV, that&rsquo;s <strong class="text-green">&pound;36-120K</strong> in potential pipeline from a single event.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 15: VALUE STACK -->
+<div class="slide" data-slide="15">
+<div class="slide-inner">
+  <h2 class="mb-12">💎 Value Stack</h2>
+  <div class="section-divider"></div>
+
+  <div class="card mb-24">
+    <h3 class="mb-20">Core Partnership</h3>
+    <div class="value-line"><span>VSL Script, Storyboard &amp; Creative Direction</span> <span class="text-accent" style="font-weight:600;">&pound;3,000</span></div>
+    <div class="value-line"><span>Discovery &amp; Strategy Kickoff</span> <span class="text-accent" style="font-weight:600;">&pound;1,000</span></div>
+    <div class="value-line"><span>Weekly Content Engine (12 weeks)</span> <span class="text-accent" style="font-weight:600;">&pound;6,000</span></div>
+    <div class="value-line"><span>Video Repurposing &mdash; 5 clips per Loom (12 weeks)</span> <span class="text-accent" style="font-weight:600;">&pound;3,600</span></div>
+    <div class="value-line"><span>Auto-Newsletter Setup &amp; Management</span> <span class="text-accent" style="font-weight:600;">&pound;1,500</span></div>
+    <div class="value-line"><span>Weekly Strategy Calls (12 sessions)</span> <span class="text-accent" style="font-weight:600;">&pound;3,000</span></div>
+  </div>
+
+  <div class="card card-green mb-24">
+    <h3 class="mb-20">Free Bonuses</h3>
+    <div class="value-line"><span>AI-Powered Lead Response System</span> <span class="bonus-value">&pound;1,500</span></div>
+    <div class="value-line"><span>Landing Page Structure &amp; Conversion Optimisation</span> <span class="bonus-value">&pound;750</span></div>
+    <div class="value-line"><span>Content Playbook &amp; Brand Guidelines Doc</span> <span class="bonus-value">&pound;500</span></div>
+  </div>
+
+  <div class="glow-card">
+    <p class="text-secondary mb-8">Total Value</p>
+    <p style="font-size:48px; font-weight:700; margin-bottom:8px;"><s class="text-secondary" style="font-size:32px;">&pound;20,850</s></p>
+    <p style="font-size:52px; font-weight:700; color:var(--green);">&pound;8,500</p>
+    <p class="text-secondary mt-12" style="font-size:16px;">Over 3 months &mdash; less than 60% of the value of a single closed deal</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 16: INVESTMENT -->
+<div class="slide" data-slide="16">
+<div class="slide-inner">
+  <h2 class="mb-12">💼 Investment</h2>
+  <div class="section-divider"></div>
+
+  <div class="grid-2 mb-32" style="max-width:800px; margin-left:auto; margin-right:auto;">
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Recommended</div>
+      <h3 class="mb-8" style="margin-top:8px;">3-Month Partnership</h3>
+      <p class="text-secondary mb-16" style="font-size:15px;">Everything in the value stack</p>
+      <div style="margin-bottom:20px;">
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:4px;">Month 1 (Setup + VSL + Content)</p>
+        <p style="font-size:36px; font-weight:700;">&pound;3,500</p>
+      </div>
+      <div style="margin-bottom:20px;">
+        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:4px;">Months 2 &amp; 3 (Content Engine)</p>
+        <p style="font-size:36px; font-weight:700;">&pound;2,500<span class="text-secondary" style="font-size:16px;">/month</span></p>
+      </div>
+      <div style="padding-top:16px; border-top:1px solid var(--card-border);">
+        <p class="text-secondary" style="font-size:14px;">Total: <strong>&pound;8,500</strong> over 3 months</p>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <h3 class="mb-8">LinkedIn Live Add-On</h3>
+      <p class="text-secondary mb-16" style="font-size:15px;">Feb 26 event push</p>
+      <p class="price-big" style="font-size:42px;">&pound;500</p>
+      <p class="text-secondary mb-20" style="font-size:15px;">One-time</p>
+      <ul class="check-list text-left" style="font-size:15px;">
+        <li>LinkedIn outreach for registrations</li>
+        <li>Personalised invitation campaign</li>
+        <li>Follow-up sequence</li>
+        <li>Post-event conversion outreach</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card card-sm mb-24" style="text-align:center;">
+    <p style="font-size:18px;"><strong>Total investment:</strong> &pound;9,000 for 3 months of content partnership + LinkedIn Live event push</p>
+    <p class="text-secondary mt-12" style="font-size:16px;">That&rsquo;s <strong>&pound;100/day</strong> for a full content team, VSL production, AI systems, and weekly strategy calls.</p>
+  </div>
+
+  <div class="card card-green card-sm" style="text-align:center;">
+    <p style="font-size:17px;"><strong>The ROI question:</strong> At &pound;12-24K customer LTV, Ripple only needs to close <strong class="text-green">1 additional deal</strong> from content, the VSL, or the LinkedIn Live event to get a <strong class="text-green">33-167% return</strong> on this investment.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 17: 90-DAY TIMELINE -->
+<div class="slide" data-slide="17">
+<div class="slide-inner">
+  <h2 class="mb-32">🗓️ 90-Day Timeline</h2>
+
+  <div class="tl-grid">
+    <div class="tl-card">
+      <span class="tl-badge tl-badge-purple">Week 1-2</span>
+      <h4>Setup &amp; Strategy</h4>
+      <ul>
+        <li>Kickoff call &mdash; deep-dive into positioning, ICP, competitors</li>
+        <li>VSL script development begins</li>
+        <li>Content strategy &amp; brand voice document</li>
+        <li>ActiveCampaign setup for newsletter</li>
+        <li class="milestone">Milestone: VSL script approved</li>
+      </ul>
+    </div>
+
+    <div class="tl-card">
+      <span class="tl-badge tl-badge-purple">Week 2-3</span>
+      <h4>LinkedIn Live Push</h4>
+      <ul>
+        <li>LinkedIn outreach campaign for Feb 26 event</li>
+        <li>Registration follow-up sequences</li>
+        <li>Event promotion content</li>
+        <li class="milestone">Milestone: 150 registrations target</li>
+      </ul>
+    </div>
+
+    <div class="tl-card">
+      <span class="tl-badge tl-badge-amber">Week 3-4</span>
+      <h4>VSL &amp; Content Launch</h4>
+      <ul>
+        <li>VSL storyboard &amp; creative direction finalised</li>
+        <li>Adrian records first Looms</li>
+        <li>First batch of content clips produced</li>
+        <li>Landing page structure delivered</li>
+        <li class="milestone">Milestone: First content published on LinkedIn</li>
+      </ul>
+    </div>
+
+    <div class="tl-card">
+      <span class="tl-badge tl-badge-amber">Month 2</span>
+      <h4>Content Engine at Pace</h4>
+      <ul>
+        <li>Weekly Loom &rarr; 5 clips + posts cadence running</li>
+        <li>VSL production guidance delivered</li>
+        <li>First newsletter sent</li>
+        <li>AI lead response system live</li>
+        <li class="milestone">Milestone: 20+ pieces of content live</li>
+      </ul>
+    </div>
+
+    <div class="tl-card tl-full">
+      <span class="tl-badge tl-badge-green">Month 3</span>
+      <h4>Compound &amp; Convert</h4>
+      <ul>
+        <li>40+ pieces of content live &mdash; organic reach compounding</li>
+        <li>Adrian established as thought leader in logistics AI</li>
+        <li>Newsletter subscriber list growing</li>
+        <li>Inbound inquiries from content and VSL</li>
+        <li>Performance review &mdash; ROI analysis &amp; continuation plan</li>
+        <li class="milestone">Milestone: Measurable pipeline impact from content &amp; VSL</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 18: CLOSE + FAQ -->
+<div class="slide" data-slide="18">
+<div class="slide-inner">
+  <h2 class="mb-12">🤝 Let&rsquo;s Get Started</h2>
+  <div class="section-divider"></div>
+
+  <div class="card card-violet mb-32 text-center">
+    <h3 class="mb-12">Next Step</h3>
+    <p style="font-size:20px; margin-bottom:16px;">Confirm the partnership and we start the kickoff process <strong>this week</strong>.</p>
+    <p class="text-secondary" style="font-size:17px;">Month 1 invoice: &pound;3,500 + &pound;500 (LinkedIn Live) = <strong>&pound;4,000</strong></p>
+    <p class="text-secondary" style="font-size:16px; margin-top:8px;">Months 2-3: &pound;2,500/month</p>
+  </div>
+
+  <h3 class="mb-16">Common Questions</h3>
+
+  <details class="faq-item">
+    <summary>What if we want to add outreach execution later?</summary>
+    <div class="faq-body">We can layer in LinkedIn outreach and cold email execution at any point. The content + VSL foundation makes outreach significantly more effective because prospects already recognise Ripple. We&rsquo;ll discuss expansion options during the monthly review.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>How much time does Adrian need to commit?</summary>
+    <div class="faq-body">One 10-15 minute Loom recording per week + 30 minutes for the weekly strategy call. Total: ~45 minutes per week. We handle everything else &mdash; editing, writing, publishing, analytics, newsletter, strategy.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>What happens after 3 months?</summary>
+    <div class="faq-body">At the end of month 3, we do a full performance review. If content is driving results (which it should be by then), we discuss continuation at the same rate or explore adding outreach channels. You keep ALL content, assets, and systems we&rsquo;ve built &mdash; nothing is locked behind our platform.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>Do we need ActiveCampaign?</summary>
+    <div class="faq-body">Yes, for the auto-newsletter system. It&rsquo;s ~&pound;80/month and the only software cost on your side. We handle the setup, template design, and automation &mdash; you just approve the content before it sends.</div>
+  </details>
+
+  <details class="faq-item">
+    <summary>What about the VSL production itself?</summary>
+    <div class="faq-body">We deliver the script, storyboard, creative direction, and production checklist. For filming, you can either record in-house (we provide full guidance on setup, lighting, and delivery) or work with a local production team. The script and creative direction is where the real value is &mdash; that&rsquo;s what makes the VSL convert.</div>
+  </details>
+</div>
+</div>
+
+</div><!-- end deck -->
+
+<div class="nav-bar" id="navBar"></div>
+<div class="nav-counter" id="navCounter">1 / 18</div>
+
+<script>
+(function() {
+  var deck = document.getElementById('deck');
+  var slides = deck.querySelectorAll('.slide');
+  var navBar = document.getElementById('navBar');
+  var navCounter = document.getElementById('navCounter');
+  var totalSlides = slides.length;
+  var currentSlide = 1;
+
+  // Build nav dots
+  for (var i = 1; i <= totalSlides; i++) {
+    var dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    dot.setAttribute('data-slide', i);
+    (function(n) {
+      dot.addEventListener('click', function() { goToSlide(n); });
+    })(i);
+    navBar.appendChild(dot);
+  }
+
+  function goToSlide(n) {
+    if (n < 1 || n > totalSlides) return;
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].classList.remove('active');
+    }
+    var dots = navBar.querySelectorAll('.nav-dot');
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.remove('active');
+    }
+    currentSlide = n;
+    slides[currentSlide - 1].classList.add('active');
+    slides[currentSlide - 1].scrollTop = 0;
+    dots[currentSlide - 1].classList.add('active');
+    navCounter.textContent = currentSlide + ' / ' + totalSlides;
+  }
+
+  function nextSlide() { goToSlide(currentSlide + 1); }
+  function prevSlide() { goToSlide(currentSlide - 1); }
+
+  // Keyboard only navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      prevSlide();
+    }
+  });
+})();
+</script>
+</body>
+</html>
