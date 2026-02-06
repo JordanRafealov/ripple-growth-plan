@@ -1,0 +1,7 @@
+# Client-specific files (do not push)
+*.docx
+*.xlsx
+*.txt
+*.webp
+.DS_Store
+newsletter-workflow.json

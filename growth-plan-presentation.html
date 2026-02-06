@@ -49,6 +49,7 @@ html, body {
   transition: opacity 400ms ease;
   overflow-y: auto;
   padding: 50px 40px 80px;
+  scrollbar-gutter: stable;
 }
 .slide.active { opacity: 1; pointer-events: auto; }
 .slide.center-v { align-items: center; }
@@ -61,13 +62,15 @@ html, body {
 .slide-inner {
   width: 100%;
   max-width: 960px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
 h1, h2, h3, h4, h5 { font-family: 'Inter', sans-serif; font-weight: 700; line-height: 1.15; }
 h1 { font-size: 52px; letter-spacing: -0.02em; margin-bottom: 16px; text-wrap: balance; }
-h2 { font-size: 44px; letter-spacing: -0.02em; margin-bottom: 16px; }
+h2 { font-size: 44px; letter-spacing: -0.02em; margin-bottom: 16px; text-align: center; }
+.slide-icon { display: block; text-align: center; font-size: 40px; margin-bottom: 12px; line-height: 1; }
 h3 { font-size: 28px; margin-bottom: 12px; }
 h4 { font-size: 22px; margin-bottom: 8px; font-weight: 600; }
 
@@ -78,8 +81,9 @@ h4 { font-size: 22px; margin-bottom: 8px; font-weight: 600; }
   letter-spacing: 0.12em;
   color: var(--accent);
   margin-bottom: 8px;
+  text-align: center;
 }
-.subtitle { font-size: 22px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 24px; font-weight: 400; }
+.subtitle { font-size: 22px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 24px; font-weight: 400; text-align: center; }
 
 .playfair-quote {
   font-family: 'Playfair Display', serif;
@@ -488,7 +492,7 @@ details .detail-body ul {
 <div class="slide center-v active" data-slide="1">
 <div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
   <p class="eyebrow mb-24" style="font-size:15px; letter-spacing:0.2em;">DOPAMINE DIGITAL</p>
-  <h1 style="font-size:48px; margin-bottom:20px;">Ripple &times; Dopamine Digital<br><span class="text-accent">Content &amp; Sales Enablement</span> Partnership</h1>
+  <h1 style="font-size:48px; margin-bottom:20px;">Ripple 🤝 Dopamine Digital<br><span class="text-accent">Content &amp; Sales Enablement</span> Partnership</h1>
   <p class="subtitle" style="max-width:700px; margin:0 auto 40px;">A 90-day content engine to give Ripple the conversion layer, authority positioning, and automated systems it needs to scale</p>
   <p class="playfair-quote" style="max-width:550px; margin:0 auto 40px; font-size:20px;">"Built specifically for Adrian, Jonny &amp; the Ripple team"</p>
   <p class="small muted">February 2026</p>
@@ -498,8 +502,9 @@ details .detail-body ul {
 <!-- SLIDE 2: WHERE WE STAND -->
 <div class="slide" data-slide="2">
 <div class="slide-inner">
+  <div class="slide-icon">🔍</div>
   <p class="eyebrow">Context</p>
-  <h2 class="mb-32">🔍 Where We Stand</h2>
+  <h2 class="mb-32">Where We Stand</h2>
 
   <div class="grid-2 mb-32">
     <div class="card card-green card-sm">
@@ -517,7 +522,7 @@ details .detail-body ul {
       <ul class="x-list">
         <li>No sales enablement video &mdash; prospects can&rsquo;t self-educate before calls</li>
         <li>No YouTube presence &mdash; not targeting search traffic or building long-form authority</li>
-        <li>Offer and ICP still unclear &mdash; narrative needs tightening for outbound and PPC to convert</li>
+        <li>Messaging doesn&rsquo;t land on cold traffic &mdash; narrative needs tightening so outbound and PPC actually convert</li>
         <li>LinkedIn content exists but isn&rsquo;t supported by a search-driven content engine</li>
         <li>Traffic converts poorly without a conversion layer (VSL)</li>
       </ul>
@@ -533,8 +538,9 @@ details .detail-body ul {
 <!-- SLIDE 3: THE CHALLENGE -->
 <div class="slide" data-slide="3">
 <div class="slide-inner">
+  <div class="slide-icon">❌</div>
   <p class="eyebrow">The Challenge</p>
-  <h2 class="mb-8">❌ Great Product &ne; Great Pipeline</h2>
+  <h2 class="mb-8">Great Product Doesn&rsquo;t Mean Great Pipeline</h2>
   <p class="subtitle">Why Ripple&rsquo;s conversion layer is the bottleneck</p>
 
   <div class="grid-2 mb-32">
@@ -553,7 +559,7 @@ details .detail-body ul {
       <ul class="x-list">
         <li>No VSL &mdash; no video doing the selling while you sleep</li>
         <li>No YouTube &mdash; not capturing search traffic or building authority</li>
-        <li>Offer and ICP not yet locked in &mdash; messaging needs tightening</li>
+        <li>Messaging doesn&rsquo;t convert cold traffic &mdash; story needs to land in seconds, not minutes</li>
         <li>No conversion layer for paid traffic and LinkedIn clicks</li>
         <li>No system to repurpose Adrian&rsquo;s expertise into searchable content</li>
       </ul>
@@ -569,8 +575,9 @@ details .detail-body ul {
 <!-- SLIDE 6: GAP 1 — NO SALES ENABLEMENT -->
 <div class="slide" data-slide="4">
 <div class="slide-inner">
+  <div class="slide-icon">⚠️</div>
   <p class="eyebrow">Gap Analysis</p>
-  <h2 class="mb-32">⚠️ Gap #1: No Sales Enablement Video</h2>
+  <h2 class="mb-32">Gap #1: No Sales Enablement Video</h2>
 
   <div class="gap-section">
     <h4>The Situation</h4>
@@ -601,8 +608,9 @@ details .detail-body ul {
 <!-- SLIDE 7: GAP 2 — NO YOUTUBE / SEARCH AUTHORITY -->
 <div class="slide" data-slide="5">
 <div class="slide-inner">
+  <div class="slide-icon">⚠️</div>
   <p class="eyebrow">Gap Analysis</p>
-  <h2 class="mb-32">⚠️ Gap #2: No YouTube or Search Authority</h2>
+  <h2 class="mb-32">Gap #2: No YouTube or Search Authority</h2>
 
   <div class="gap-section">
     <h4>The Situation</h4>
@@ -633,75 +641,62 @@ details .detail-body ul {
 <!-- SLIDE 8: GAP 3 — OFFER & ICP CLARITY -->
 <div class="slide" data-slide="6">
 <div class="slide-inner">
+  <div class="slide-icon">⚠️</div>
   <p class="eyebrow">Gap Analysis</p>
-  <h2 class="mb-32">⚠️ Gap #3: Offer &amp; ICP Not Yet Locked In</h2>
+  <h2 class="mb-32">Gap #3: The Story Doesn&rsquo;t Land on Cold Traffic</h2>
 
   <div class="gap-section">
     <h4>The Situation</h4>
-    <p>Ripple&rsquo;s product does a lot of things for a lot of people &mdash; AI operations across emails, PDFs, spreadsheets, phone calls, across TMSs, WMSs, CRMs, and ERPs. That breadth is a strength in delivery, but it&rsquo;s a problem in marketing. When the offer and ICP aren&rsquo;t razor-sharp, every piece of content, every ad, and every conversation has to do the work of explaining from scratch.</p>
+    <p>Ripple&rsquo;s product does a lot of things &mdash; AI operations across emails, PDFs, spreadsheets, phone calls, across TMSs, WMSs, CRMs, and ERPs. That breadth is a strength in delivery, but it makes the marketing harder. A cold prospect hitting the website or seeing a LinkedIn ad needs to understand exactly what Ripple does and why it matters to <em>them</em> &mdash; in seconds, not minutes.</p>
   </div>
 
   <div class="gap-section">
     <h4>The Root Cause</h4>
-    <p>The narrative needs tightening. Who exactly is the ideal buyer? What specific pain are you solving first? What&rsquo;s the one promise that gets them on a call? Without this locked in, LinkedIn outreach and Google PPC are casting a wide net &mdash; and the VSL, content, and sales conversations all pull in slightly different directions.</p>
+    <p>The narrative needs tightening for cold traffic. You know your buyer. Your customers love you. But someone who&rsquo;s never heard of Ripple needs a sharper hook, a clearer promise, and a faster path to &ldquo;this is for me.&rdquo; Right now, the messaging works when Adrian explains it on a call &mdash; but it doesn&rsquo;t work on a landing page, in an ad, or in a LinkedIn post where you have 3 seconds to earn attention.</p>
   </div>
 
   <div class="card card-red card-sm mb-24">
     <h4 class="text-red">The Cost</h4>
-    <p style="font-size:17px;">A scattered message means every channel works harder for less. Prospects aren&rsquo;t sure if Ripple is for them. Ads attract the wrong clicks. Content doesn&rsquo;t resonate with a specific buyer. Once the offer and ICP are locked in, <strong>everything else &mdash; the VSL, the content, the outreach &mdash; becomes dramatically more effective</strong> because it all speaks to the same person with the same promise.</p>
+    <p style="font-size:17px;">When the message doesn&rsquo;t land immediately, every channel works harder for less. PPC clicks bounce. LinkedIn outreach gets ignored. Content doesn&rsquo;t resonate. Once the narrative is tightened for cold traffic, <strong>everything else &mdash; the VSL, the content, the ads &mdash; becomes dramatically more effective</strong> because it speaks to the right person with the right promise in the right way.</p>
   </div>
 
   <div class="card card-violet card-sm">
     <h4>Questions to Consider</h4>
     <ul class="question-list">
-      <li>If someone asked &ldquo;who is Ripple for?&rdquo; would everyone on the team give the same answer?</li>
-      <li>What&rsquo;s the one-sentence promise that gets a logistics operator to stop scrolling and pay attention?</li>
-      <li>What would it mean for your Google PPC and LinkedIn if every piece of messaging was built around one clear, specific buyer?</li>
+      <li>If a logistics operator saw Ripple for the first time in a 3-second scroll, would they stop and pay attention?</li>
+      <li>What&rsquo;s the one-sentence promise that makes someone think &ldquo;I need to know more&rdquo;?</li>
+      <li>What would it mean for your Google PPC and LinkedIn if the messaging was built to convert cold traffic &mdash; not just warm referrals?</li>
     </ul>
   </div>
 </div>
 </div>
 
 <!-- SLIDE 9: COST OF INACTION -->
-<div class="slide" data-slide="7">
+<div class="slide center-v" data-slide="7">
 <div class="slide-inner">
-  <h2 class="mb-12 text-center">💰 Cost of Inaction</h2>
-  <div class="section-divider"></div>
+  <div class="slide-icon">💰</div>
+  <h2 class="mb-12 text-center">Cost of Inaction</h2>
 
-  <div class="gap-visual mb-32">
-    <div class="gap-box card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
-      <p class="small text-secondary mb-4">Current State</p>
-      <p class="text-red" style="font-size:28px; font-weight:700;">No Conversion Layer</p>
-      <p class="small text-secondary mt-12">No VSL, no YouTube<br>Unclear offer/ICP<br>PPC clicks wasted</p>
+  <p class="subtitle mb-32">Every month without a conversion layer, the gap widens.</p>
+
+  <div class="grid-3 mb-32" style="align-items:stretch;">
+    <div class="card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); text-align:center; display:flex; flex-direction:column; justify-content:center; min-height:200px;">
+      <p style="font-size:48px; font-weight:700; color:var(--red); margin-bottom:12px;">&pound;12-24K</p>
+      <p style="font-size:15px; color:var(--text-secondary); line-height:1.5;">Lost per deal that slips through<br>because there&rsquo;s no video<br>doing the selling</p>
     </div>
-    <div class="gap-arrow">
-      <span>&rarr;</span>
-      <span style="font-size:12px; color:var(--text-secondary);">every month<br>without action</span>
+    <div class="card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); text-align:center; display:flex; flex-direction:column; justify-content:center; min-height:200px;">
+      <p style="font-size:48px; font-weight:700; color:var(--amber); margin-bottom:12px;">0</p>
+      <p style="font-size:15px; color:var(--text-secondary); line-height:1.5;">YouTube videos ranking<br>for the search terms<br>your buyers are typing</p>
     </div>
-    <div class="gap-box card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2);">
-      <p class="small text-secondary mb-4">Compounding Loss</p>
-      <p class="text-red" style="font-size:28px; font-weight:700;">&pound;12-24K+</p>
-      <p class="small text-secondary mt-12">Per deal that slips through<br>because there&rsquo;s no video<br>doing the selling</p>
+    <div class="card card-sm" style="background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); text-align:center; display:flex; flex-direction:column; justify-content:center; min-height:200px;">
+      <p style="font-size:48px; font-weight:700; color:var(--red); margin-bottom:12px;">&infin;</p>
+      <p style="font-size:15px; color:var(--text-secondary); line-height:1.5;">Months your competitors<br>build authority while Ripple<br>stays invisible on search</p>
     </div>
   </div>
 
-  <div class="grid-3 mb-32">
-    <div class="card card-sm stat">
-      <div class="num text-red">&pound;12-24K</div>
-      <div class="label">Revenue from a single<br>closed customer</div>
-    </div>
-    <div class="card card-sm stat">
-      <div class="num text-amber">0</div>
-      <div class="label">YouTube videos ranking<br>for buyer search terms</div>
-    </div>
-    <div class="card card-sm stat">
-      <div class="num text-red">Every Month</div>
-      <div class="label">Competitors build authority<br>while Ripple stays invisible<br>on search</div>
-    </div>
-  </div>
-
-  <div class="card card-red card-sm" style="text-align:center;">
-    <p style="font-size:18px;"><strong>The real cost isn&rsquo;t one lost deal &mdash; it&rsquo;s the compounding effect.</strong> Every month without a VSL and YouTube content is a month where competitors capture the search traffic, build the authority, and take the market position that Ripple should own. Content compounds. Inaction compounds too.</p>
+  <div class="card" style="text-align:center; padding:32px 40px; border:1px solid rgba(239,68,68,0.2); background:rgba(239,68,68,0.04);">
+    <p style="font-size:19px; line-height:1.6;"><strong>The real cost isn&rsquo;t one lost deal &mdash; it&rsquo;s the compounding effect.</strong></p>
+    <p style="font-size:16px; color:var(--text-secondary); line-height:1.6; margin-top:12px;">Every month without a VSL and YouTube content is a month where competitors capture the search traffic, build the authority, and take the market position that Ripple should own. <strong style="color:var(--text);">Content compounds. Inaction compounds too.</strong></p>
   </div>
 </div>
 </div>
@@ -709,8 +704,9 @@ details .detail-body ul {
 <!-- SLIDE 10: THE PARTNERSHIP — THREE PILLARS -->
 <div class="slide center-v" data-slide="8">
 <div class="slide-inner">
-  <h2 class="mb-12 text-center">🚀 The Partnership</h2>
-  <div class="section-divider"></div>
+  <div class="slide-icon">🚀</div>
+  <h2 class="mb-12 text-center">The Partnership</h2>
+
   <p class="subtitle text-center" style="max-width:700px; margin:0 auto 40px;">Three pillars to give Ripple a conversion layer, content engine, and the strategy to make it all work &mdash; in 90 days.</p>
 
   <div class="grid-3">
@@ -722,12 +718,12 @@ details .detail-body ul {
     <div class="card card-sm text-center" style="border-top: 3px solid var(--green);">
       <h3 class="text-green mb-8">Pillar 2</h3>
       <h4 class="mb-12">YouTube &amp; Content Engine</h4>
-      <p class="text-secondary" style="font-size:16px;">Adrian records a Loom. We turn it into a YouTube video, 5+ short clips, and social content &mdash; every week</p>
+      <p class="text-secondary" style="font-size:16px;">Adrian records a Loom and publishes. We provide the brief, thumbnails, titles, and repurpose into 5+ short clips and social content &mdash; every week</p>
     </div>
     <div class="card card-sm text-center" style="border-top: 3px solid var(--amber);">
       <h3 class="text-amber mb-8">Pillar 3</h3>
       <h4 class="mb-12">Strategy &amp; Systems</h4>
-      <p class="text-secondary" style="font-size:16px;">Offer/ICP locked in, auto-newsletter, AI lead response, and weekly strategy calls to keep everything on track</p>
+      <p class="text-secondary" style="font-size:16px;">Messaging tightened for cold traffic, auto-newsletter, AI lead response, and weekly strategy calls to keep everything on track</p>
     </div>
   </div>
 </div>
@@ -736,31 +732,73 @@ details .detail-body ul {
 <!-- SLIDE 11: PILLAR 1 — VSL & SALES ENABLEMENT -->
 <div class="slide" data-slide="9">
 <div class="slide-inner">
+  <div class="slide-icon">🎯</div>
   <p class="eyebrow">Pillar 1</p>
-  <h2 class="mb-32">🎯 VSL &amp; Sales Enablement</h2>
+  <h2 class="mb-32">VSL &amp; Sales Enablement</h2>
 
   <details open>
     <summary>Why a VSL Changes Everything</summary>
     <div class="detail-body">
-      <p style="margin-bottom:12px;">A Video Sales Letter is the single highest-leverage asset for a complex B2B product like Ripple. It does three things:</p>
-      <ul>
-        <li><strong>Educates</strong> &mdash; Prospects understand what Ripple does before they ever talk to sales</li>
-        <li><strong>Qualifies</strong> &mdash; Only people who resonate with the message book calls</li>
-        <li><strong>Sells</strong> &mdash; By the time someone gets on a call, they&rsquo;re 80% convinced</li>
-      </ul>
-      <p style="margin-top:12px; color:var(--green); font-weight:600;">Result: shorter sales cycles, higher close rates, less time explaining basics on calls.</p>
+      <p style="margin-bottom:16px;">A Video Sales Letter is the single highest-leverage asset for a complex B2B product like Ripple. It sits on your site and does the selling 24/7:</p>
+
+      <img src="assets/vsl_example.png" alt="VSL example — auto-playing video with click-to-unmute" class="proof-img" style="margin-bottom:16px;">
+
+      <div class="grid-3" style="gap:12px; margin-bottom:16px;">
+        <div style="background:rgba(124,58,237,0.08); border-radius:10px; padding:16px; text-align:center;">
+          <p style="font-size:28px; font-weight:700; color:var(--accent); margin-bottom:4px;">Educates</p>
+          <p style="font-size:14px; color:var(--text-secondary);">Prospects understand what Ripple does before they ever speak to sales</p>
+        </div>
+        <div style="background:rgba(245,158,11,0.08); border-radius:10px; padding:16px; text-align:center;">
+          <p style="font-size:28px; font-weight:700; color:var(--amber); margin-bottom:4px;">Qualifies</p>
+          <p style="font-size:14px; color:var(--text-secondary);">Only people who resonate with the message book calls &mdash; no more tyre-kickers</p>
+        </div>
+        <div style="background:rgba(34,197,94,0.08); border-radius:10px; padding:16px; text-align:center;">
+          <p style="font-size:28px; font-weight:700; color:var(--green); margin-bottom:4px;">Sells</p>
+          <p style="font-size:14px; color:var(--text-secondary);">By the time someone gets on a call, they&rsquo;re 80% convinced &mdash; you just close</p>
+        </div>
+      </div>
+
+      <p style="margin-bottom:12px;">Here&rsquo;s what a live VSL dashboard looks like &mdash; this is our Vidalytics data from the last 30 days:</p>
+      <img src="assets/vidalytics_dashboard.png" alt="Vidalytics dashboard — 1.7K plays, 98.70% play rate" class="proof-img" style="margin-bottom:12px;">
+      <p style="font-size:14px; color:var(--text-secondary);"><strong>1,700+ plays</strong> in 30 days. <strong>98.70% play rate</strong>. <strong>+45% increase</strong> month-over-month. This is what happens when a VSL is working &mdash; it compounds every day, selling while you sleep.</p>
     </div>
   </details>
 
   <details>
     <summary>What We Deliver</summary>
     <div class="detail-body">
+      <p style="margin-bottom:16px;">The full VSL creation process, from strategy to a ready-to-embed asset:</p>
+
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:0 0 20px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 110px;">
+          <strong>Discovery</strong><br><span style="color:var(--text-secondary);">ICP + positioning</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 110px;">
+          <strong>Script</strong><br><span style="color:var(--text-secondary);">Full VSL copy</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 110px;">
+          <strong>Storyboard</strong><br><span style="color:var(--text-secondary);">Visual flow</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 110px;">
+          <strong>Adrian Records</strong><br><span style="color:var(--text-secondary);">~10 minutes</span>
+        </div>
+        <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:0 0 110px;">
+          <strong style="color:var(--green);">Ready to Embed</strong><br><span style="color:var(--text-secondary);">On site + socials</span>
+        </div>
+      </div>
+
       <ul>
-        <li><strong>Discovery &amp; Strategy Session</strong> &mdash; Deep-dive into Ripple&rsquo;s positioning, ICP pain points, and competitive landscape</li>
-        <li><strong>Full VSL Script</strong> &mdash; Problem &rarr; Agitate &rarr; Solution &rarr; Proof &rarr; CTA framework, optimised for logistics buyers</li>
-        <li><strong>Storyboard &amp; Creative Direction</strong> &mdash; Visual flow, b-roll suggestions, on-screen text overlays</li>
-        <li><strong>Production Guidance</strong> &mdash; Recording checklist, lighting/audio setup, editing notes</li>
-        <li><strong>Landing Page Structure</strong> &mdash; VSL placement, supporting copy, CTA positioning</li>
+        <li><strong>1-Hour Discovery &amp; Strategy Session</strong> &mdash; Deep-dive into Ripple&rsquo;s positioning, ICP pain points, competitive landscape, and what makes prospects say yes (or no)</li>
+        <li><strong>Competitor &amp; Market Audit</strong> &mdash; What your competitors are doing with video, where the gaps are, and how to position Ripple differently</li>
+        <li><strong>Full VSL Script</strong> &mdash; Problem &rarr; Agitate &rarr; Solution &rarr; Proof &rarr; CTA framework, written specifically for logistics buyers. Multiple hook variations for A/B testing</li>
+        <li><strong>Storyboard &amp; Creative Direction</strong> &mdash; Shot-by-shot visual flow including b-roll suggestions, on-screen text overlays, data visualisations, and transitions</li>
+        <li><strong>Production Checklist</strong> &mdash; Camera setup, lighting, audio, teleprompter guidance, wardrobe notes &mdash; everything Adrian needs to record in one take</li>
+        <li><strong>Loom Recording Format</strong> &mdash; No fancy production needed. Adrian records via Loom using the script and storyboard we provide &mdash; simple, authentic, and ready to publish</li>
+        <li><strong>Landing Page Structure</strong> &mdash; Where to place the VSL, supporting copy, CTA positioning, and how to track performance via Vidalytics</li>
       </ul>
     </div>
   </details>
@@ -770,23 +808,28 @@ details .detail-body ul {
     <div class="detail-body">
       <p style="margin-bottom:12px;">The VSL becomes the conversion layer for ALL your traffic channels:</p>
       <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 120px;">
           <strong>LinkedIn</strong><br><span style="color:var(--text-secondary);">Outreach clicks</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:0 0 120px;">
           <strong>Google PPC</strong><br><span style="color:var(--text-secondary);">Ad traffic</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+        <div style="background:rgba(124,58,237,0.15); border:1px solid rgba(124,58,237,0.3); border-radius:8px; padding:10px 12px; flex:0 0 120px;">
           <strong style="color:var(--accent);">VSL</strong><br><span style="color:var(--text-secondary);">Conversion layer</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:140px;">
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:0 0 120px;">
           <strong style="color:var(--green);">Booked Call</strong><br><span style="color:var(--text-secondary);">Educated buyer</span>
         </div>
       </div>
-      <p style="margin-top:12px;">Every pound you spend on LinkedIn and Google PPC becomes <strong>more effective</strong> because the VSL does the heavy lifting of education and persuasion.</p>
+      <p style="margin-top:12px;">Every pound you spend on LinkedIn and Google PPC becomes <strong>more effective</strong> because the VSL does the heavy lifting of education and persuasion. No more cold prospects on calls &mdash; they arrive pre-sold.</p>
+
+      <div style="margin-top:16px; background:rgba(34,197,94,0.06); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:16px; text-align:center;">
+        <p style="font-size:15px; color:var(--text-secondary);">Without VSL: Prospect clicks ad &rarr; reads text &rarr; <strong class="text-red">bounces (60-70%)</strong></p>
+        <p style="font-size:15px; color:var(--text-secondary); margin-top:8px;">With VSL: Prospect clicks ad &rarr; watches video &rarr; <strong class="text-green">books call (pre-educated)</strong></p>
+      </div>
     </div>
   </details>
 </div>
@@ -795,31 +838,32 @@ details .detail-body ul {
 <!-- SLIDE 12: PILLAR 2 — WEEKLY CONTENT ENGINE -->
 <div class="slide" data-slide="10">
 <div class="slide-inner">
+  <div class="slide-icon">⚡</div>
   <p class="eyebrow">Pillar 2</p>
-  <h2 class="mb-32">⚡ YouTube &amp; Content Engine</h2>
+  <h2 class="mb-32">YouTube &amp; Content Engine</h2>
 
   <details open>
-    <summary>How It Works</summary>
+    <summary>How It Works &mdash; Your Only Job: Hit Record</summary>
     <div class="detail-body">
-      <p style="margin-bottom:16px;">Adrian records <strong>one 15-20 minute Loom per week</strong> from a brief we prepare. We handle everything else:</p>
+      <p style="margin-bottom:16px;">Adrian records <strong>one 15-20 minute Loom per week</strong> from a brief we prepare. We handle the strategy, topics, thumbnails, and content repurposing &mdash; Adrian just records and publishes via Loom:</p>
       <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1 1 0; min-width:0;">
           <strong>We Brief</strong><br><span style="color:var(--text-secondary);">Topic + Miro board</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1 1 0; min-width:0;">
           <strong>Adrian</strong><br><span style="color:var(--text-secondary);">Records Loom</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
-          <strong>We Edit</strong><br><span style="color:var(--text-secondary);">YouTube + 5 clips</span>
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1 1 0; min-width:0;">
+          <strong>We Repurpose</strong><br><span style="color:var(--text-secondary);">5 clips + social</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+        <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1 1 0; min-width:0;">
           <strong>We Optimise</strong><br><span style="color:var(--text-secondary);">Titles + thumbnails</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
-        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:120px;">
+        <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1 1 0; min-width:0;">
           <strong style="color:var(--green);">Ranks on Search</strong><br><span style="color:var(--text-secondary);">YouTube + Google</span>
         </div>
       </div>
@@ -830,19 +874,19 @@ details .detail-body ul {
     <summary>What You Get Every Week</summary>
     <div class="detail-body">
       <ul>
-        <li><strong>1 full YouTube video</strong> &mdash; Edited, SEO-optimised title, custom thumbnail designed for click-through</li>
-        <li><strong>5 short-form video clips</strong> &mdash; Formatted for LinkedIn, YouTube Shorts, and Twitter/X (subtitles, branded overlays, hooks)</li>
-        <li><strong>Loom brief with Miro board</strong> &mdash; Topic research, talking points, and visual structure so Adrian knows exactly what to record</li>
-        <li><strong>Content calendar</strong> &mdash; Planned topics targeting search terms your buyers are actually searching</li>
-        <li><strong>Weekly strategy call</strong> &mdash; 30 min to review performance, plan next topics, and adjust</li>
+        <li><strong>1 full YouTube video</strong> &mdash; Adrian records via Loom using our brief. We provide the SEO-optimised title, description, tags, and a custom thumbnail designed for maximum click-through</li>
+        <li><strong>5 short-form video clips</strong> &mdash; Each clip is a standalone piece: subtitled, branded overlays, hooks optimised for LinkedIn, YouTube Shorts, and Twitter/X. Formatted natively for each platform</li>
+        <li><strong>Loom brief with Miro board</strong> &mdash; Full topic research, competitor analysis, talking points, and visual structure so Adrian knows exactly what to record. Just open the board, hit record, and talk</li>
+        <li><strong>Content calendar</strong> &mdash; Strategic topic pipeline targeting the search terms your buyers are actually typing into Google and YouTube (e.g. &ldquo;AI for freight operations&rdquo;, &ldquo;automate logistics compliance&rdquo;)</li>
+        <li><strong>Weekly strategy call</strong> &mdash; 30 minutes to review views, engagement, and reach. Plan next week&rsquo;s topics. Adjust based on what&rsquo;s performing. Keep the engine aligned with sales goals</li>
       </ul>
     </div>
   </details>
 
   <details>
-    <summary>The Compounding Effect</summary>
+    <summary>The Compounding Effect &mdash; Why This Builds Over Time</summary>
     <div class="detail-body">
-      <p style="margin-bottom:12px;">YouTube isn&rsquo;t a campaign &mdash; it&rsquo;s compound interest for your brand. LinkedIn posts disappear in 48 hours. YouTube videos rank for years:</p>
+      <p style="margin-bottom:12px;">YouTube isn&rsquo;t a campaign you run and stop &mdash; it&rsquo;s <strong>compound interest for your brand</strong>. A LinkedIn post disappears in 48 hours. A YouTube video that ranks for &ldquo;AI for freight operations&rdquo; generates leads for <strong>years</strong>:</p>
       <div class="grid-3" style="margin-top:12px;">
         <div class="card card-sm text-center" style="padding:16px;">
           <p style="font-size:28px; font-weight:700; color:var(--accent);">Month 1</p>
@@ -861,14 +905,14 @@ details .detail-body ul {
   </details>
 
   <details>
-    <summary>Proof: Content in Action</summary>
+    <summary>Proof: Our Content Engine in Action</summary>
     <div class="detail-body">
-      <p style="margin-bottom:12px;">This is exactly the system we run for our other clients &mdash; podcast recordings turned into social content:</p>
+      <p style="margin-bottom:16px;">Here&rsquo;s what the weekly content output actually looks like &mdash; one recording turned into a full week of distribution:</p>
       <div class="img-row" style="margin-top:12px;">
-        <img src="assets/podcast_linkedin_content.png" alt="LinkedIn content examples" class="proof-img">
-        <img src="assets/podcast_youtube_content.png" alt="YouTube content examples" class="proof-img">
+        <img src="assets/content_engine_youtube.png" alt="YouTube content output — weekly long-form video" class="proof-img">
+        <img src="assets/content_engine_social.png" alt="Social content output — 5 clips formatted for LinkedIn, Shorts, X" class="proof-img">
       </div>
-      <p style="margin-top:12px;">Same system, applied to Ripple&rsquo;s Loom recordings instead of podcast episodes.</p>
+      <p style="margin-top:16px; font-size:16px; color:var(--text-secondary);">One Loom recording &rarr; 1 YouTube video + 5 short-form clips + social posts + newsletter content. Every single week. This is the exact system we&rsquo;ll build for Ripple.</p>
     </div>
   </details>
 </div>
@@ -877,24 +921,44 @@ details .detail-body ul {
 <!-- SLIDE 13: PILLAR 3 — AI-POWERED SYSTEMS -->
 <div class="slide" data-slide="11">
 <div class="slide-inner">
+  <div class="slide-icon">🤖</div>
   <p class="eyebrow">Pillar 3</p>
-  <h2 class="mb-32">🤖 AI-Powered Systems</h2>
+  <h2 class="mb-32">AI-Powered Systems</h2>
 
   <details open>
-    <summary>Auto-Newsletter System</summary>
+    <summary>Mission Control Dashboard &mdash; Your Entire Business at a Glance</summary>
     <div class="detail-body">
-      <p style="margin-bottom:12px;">A monthly email newsletter powered by ActiveCampaign (&pound;80/mo) that automatically compiles your best content and sends it to your subscriber list:</p>
+      <p style="margin-bottom:12px;">A real-time command centre that gives you total visibility over your pipeline, content, clients, and AI agents &mdash; all in one screen:</p>
+      <div style="margin:16px 0; border-radius:12px; overflow:hidden; border:1px solid var(--card-border);">
+        <img src="assets/mission_control.jpg" alt="Mission Control Dashboard" style="width:100%; display:block; border-radius:12px;">
+      </div>
+      <ul>
+        <li><strong>Revenue North Star</strong> &mdash; Live MRR tracking against monthly goal with daily pace indicator</li>
+        <li><strong>Pipeline funnel</strong> &mdash; Emails sent &rarr; replies &rarr; calls booked &rarr; new clients, all in real time</li>
+        <li><strong>Client health cards</strong> &mdash; Leads, active contacts, calls booked, contract progress per client</li>
+        <li><strong>YouTube analytics</strong> &mdash; Subscribers, views, watch hours, and new subs at a glance</li>
+        <li><strong>AI agent fleet</strong> &mdash; 18 specialised agents running 24/7 &mdash; lead research, outreach, content, coaching, and more</li>
+        <li><strong>Sales pipeline</strong> &mdash; Visual breakdown by stage: Podcast &rarr; Warm Lead &rarr; Strategy Call &rarr; Growth Plan &rarr; Close</li>
+      </ul>
+      <p style="margin-top:12px; color:var(--text-secondary); font-size:14px;">You get the full template and files to plug into your own systems &mdash; customised to your KPIs, your pipeline stages, and your team structure. Updated in real time, accessible from any device.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Auto-Newsletter System &mdash; Nurture on Autopilot</summary>
+    <div class="detail-body">
+      <p style="margin-bottom:12px;">A weekly email newsletter automated from your existing email &mdash; no extra software needed. AI compiles your best content into a digest and sends it to your subscriber list. Zero work from your team once set up:</p>
       <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
         <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
           <strong>Content Created</strong><br><span style="color:var(--text-secondary);">Weekly clips &amp; posts</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
         <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
-          <strong>AI Curates</strong><br><span style="color:var(--text-secondary);">Best-of monthly digest</span>
+          <strong>AI Curates</strong><br><span style="color:var(--text-secondary);">Best-of weekly digest</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
         <div style="background:rgba(124,58,237,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
-          <strong>Auto-Sends</strong><br><span style="color:var(--text-secondary);">To subscriber list</span>
+          <strong>Auto-Sends</strong><br><span style="color:var(--text-secondary);">From Ripple&rsquo;s email</span>
         </div>
         <span style="color:var(--accent); font-size:16px; flex-shrink:0;">&rarr;</span>
         <div style="background:rgba(34,197,94,0.1); border-radius:8px; padding:10px 12px; flex:1; min-width:70px; max-width:130px;">
@@ -907,11 +971,15 @@ details .detail-body ul {
         <li>Builds subscriber list as content reaches new audiences</li>
         <li>CTA in every newsletter drives bookings</li>
       </ul>
+      <div style="margin-top:16px; border-radius:12px; overflow:hidden; border:1px solid var(--card-border);">
+        <img src="assets/newsletter_workflow.png" alt="AI-powered newsletter automation workflow — n8n" style="width:100%; display:block; border-radius:12px;">
+      </div>
+      <p style="text-align:center; color:var(--text-secondary); font-size:13px; margin-top:8px;">Every Friday at 9am: Fetch content &rarr; AI writes newsletter copy &rarr; Build email HTML &rarr; Segment subscribers &rarr; Send &rarr; Log opens &rarr; Notify team on Slack.</p>
     </div>
   </details>
 
   <details>
-    <summary>AI-Powered YouTube Lead Response (Bonus)</summary>
+    <summary>AI-Powered Lead Response System (Free Bonus &mdash; &pound;1,500 value)</summary>
     <div class="detail-body">
       <p style="margin-bottom:12px;">Our proprietary system that automatically qualifies and responds to inbound leads &mdash; included free as a bonus (&pound;1,500 value):</p>
       <div style="display:flex; align-items:center; justify-content:center; gap:6px; font-size:12px; text-align:center; margin:16px 0;">
@@ -937,19 +1005,27 @@ details .detail-body ul {
         <li>Qualified leads get instant booking link &mdash; no manual follow-up needed</li>
         <li>Slack notification for human oversight &mdash; you stay in control</li>
       </ul>
+      <div style="margin-top:16px; border-radius:12px; overflow:hidden; border:1px solid var(--card-border);">
+        <img src="assets/lead_response_workflow.jpg" alt="AI Lead Response — 36-node n8n workflow" style="width:100%; display:block; border-radius:12px;">
+      </div>
+      <p style="text-align:center; color:var(--text-secondary); font-size:13px; margin-top:8px;">Our 36-node automation: TypeForm &rarr; AI qualification &rarr; personalised email &rarr; ClickUp &rarr; Slack &rarr; Google Sheets &mdash; all under 60 seconds.</p>
     </div>
   </details>
 
   <details>
     <summary>Weekly Strategy Calls &amp; Reporting</summary>
     <div class="detail-body">
+      <p style="margin-bottom:12px;">Your dedicated strategist on a 30-minute call every week to keep the engine aligned with your sales goals:</p>
       <ul>
-        <li><strong>30-minute weekly call</strong> with your dedicated strategist</li>
-        <li>Content performance review (views, engagement, reach)</li>
-        <li>Next week&rsquo;s content topics planned and approved</li>
-        <li>Pipeline impact tracking &mdash; connecting content to conversations</li>
-        <li>Monthly analytics report with clear ROI metrics</li>
+        <li><strong>Performance review</strong> &mdash; Views, engagement, reach, and click-through on every piece of content</li>
+        <li><strong>Topic planning</strong> &mdash; Next week&rsquo;s content topics planned and approved live on the call</li>
+        <li><strong>Pipeline tracking</strong> &mdash; Connecting content directly to conversations and booked calls</li>
+        <li><strong>Monthly analytics report</strong> &mdash; Clear ROI metrics: impressions, subscribers, inbound leads, and revenue attribution</li>
+        <li><strong>Ongoing optimisation</strong> &mdash; Thumbnails, titles, hooks, and formats adjusted based on what&rsquo;s actually performing</li>
       </ul>
+      <div style="margin-top:16px; border-radius:12px; overflow:hidden; border:1px solid var(--card-border);">
+        <img src="assets/weekly_call_zoom.jpg" alt="Weekly strategy call with Adrian, Jordan & Jonny" style="width:100%; display:block; border-radius:12px;">
+      </div>
     </div>
   </details>
 </div>
@@ -958,8 +1034,9 @@ details .detail-body ul {
 <!-- SLIDE 14: IMMEDIATE WIN — LINKEDIN LIVE -->
 <div class="slide" data-slide="12">
 <div class="slide-inner">
+  <div class="slide-icon">📡</div>
   <p class="eyebrow">Immediate Win</p>
-  <h2 class="mb-32">📡 LinkedIn Live: Survive &amp; Thrive in 2026</h2>
+  <h2 class="mb-32">LinkedIn Live: Survive &amp; Thrive in 2026</h2>
 
   <div class="card card-violet card-sm mb-24" style="text-align:center;">
     <p style="font-size:20px; font-weight:600; margin-bottom:8px;">February 26, 2026</p>
@@ -970,19 +1047,19 @@ details .detail-body ul {
     <div class="card card-sm">
       <h4 class="mb-12">What We Do</h4>
       <ul class="check-list">
-        <li>LinkedIn outreach campaign targeting logistics decision-makers</li>
-        <li>Personalised invitations from Ripple&rsquo;s LinkedIn profiles</li>
-        <li>Follow-up sequence for registrants</li>
-        <li>Event promotion content for LinkedIn feed</li>
-        <li>Post-event follow-up to convert attendees</li>
+        <li>Cold email campaign to all previous podcast guests &amp; warm contacts via Instantly</li>
+        <li>3-touch email invite sequence (personal invite &rarr; social proof &rarr; urgency)</li>
+        <li>Registration driven to event page &amp; LinkedIn event</li>
+        <li>Campaign monitoring &amp; reply handling</li>
+        <li>Post-event follow-up to convert attendees into sales conversations</li>
       </ul>
     </div>
     <div class="card card-sm">
       <h4 class="mb-12">Why It Matters</h4>
       <ul class="bullet-list">
-        <li>Generates a <strong>warm list</strong> of 150+ logistics operators who know Ripple</li>
-        <li>Positions Adrian as a thought leader in one event</li>
-        <li>Attendees become <strong>warm leads</strong> for sales follow-up</li>
+        <li>Recycles your <strong>existing warm contacts</strong> &mdash; people who already know Ripple</li>
+        <li>Positions Adrian as a thought leader in one high-impact event</li>
+        <li>Attendees become <strong>warm leads</strong> for immediate sales follow-up</li>
         <li>Content from the event feeds the content engine for weeks</li>
       </ul>
     </div>
@@ -997,31 +1074,30 @@ details .detail-body ul {
 <!-- SLIDE 15: VALUE STACK -->
 <div class="slide" data-slide="13">
 <div class="slide-inner">
-  <h2 class="mb-12">💎 Value Stack</h2>
-  <div class="section-divider"></div>
+  <div class="slide-icon">💎</div>
+  <h2 class="mb-12">Value Stack</h2>
+
+
+  <p class="text-secondary mb-24" style="font-size:17px; text-align:center;">Here&rsquo;s everything included in the partnership &mdash; and what each piece is worth if purchased separately.</p>
 
   <div class="card mb-24">
-    <h3 class="mb-20">Core Partnership</h3>
-    <div class="value-line"><span>VSL Script, Storyboard &amp; Creative Direction</span> <span class="text-accent" style="font-weight:600;">&pound;3,000</span></div>
-    <div class="value-line"><span>Discovery &amp; Strategy Kickoff</span> <span class="text-accent" style="font-weight:600;">&pound;1,000</span></div>
-    <div class="value-line"><span>Weekly Content Engine (12 weeks)</span> <span class="text-accent" style="font-weight:600;">&pound;6,000</span></div>
-    <div class="value-line"><span>Video Repurposing &mdash; 5 clips per Loom (12 weeks)</span> <span class="text-accent" style="font-weight:600;">&pound;3,600</span></div>
-    <div class="value-line"><span>Auto-Newsletter Setup &amp; Management</span> <span class="text-accent" style="font-weight:600;">&pound;1,500</span></div>
-    <div class="value-line"><span>Weekly Strategy Calls (12 sessions)</span> <span class="text-accent" style="font-weight:600;">&pound;3,000</span></div>
-  </div>
-
-  <div class="card card-green mb-24">
-    <h3 class="mb-20">Free Bonuses</h3>
-    <div class="value-line"><span>AI-Powered Lead Response System</span> <span class="bonus-value">&pound;1,500</span></div>
-    <div class="value-line"><span>Landing Page Structure &amp; Conversion Optimisation</span> <span class="bonus-value">&pound;750</span></div>
-    <div class="value-line"><span>Content Playbook &amp; Brand Guidelines Doc</span> <span class="bonus-value">&pound;500</span></div>
+    <h3 class="mb-20" style="text-align:center;">What&rsquo;s Included</h3>
+    <div class="value-line"><span>Mission Control Dashboard</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;3,000</span></div>
+    <div class="value-line"><span>VSL Script, Storyboard &amp; Creative Direction</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;3,000</span></div>
+    <div class="value-line"><span>Discovery &amp; Strategy Kickoff</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;1,000</span></div>
+    <div class="value-line"><span>Weekly Content Engine (12 weeks)</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;6,000</span></div>
+    <div class="value-line"><span>Video Repurposing &mdash; 5 clips per Loom (12 weeks)</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;3,600</span></div>
+    <div class="value-line"><span>Auto-Newsletter Setup &amp; Management</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;1,500</span></div>
+    <div class="value-line"><span>Weekly Strategy Calls (12 sessions)</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;3,000</span></div>
+    <div class="value-line"><span>AI-Powered Lead Response System</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;1,500</span></div>
+    <div class="value-line"><span>Landing Page Structure &amp; Conversion Optimisation</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;750</span></div>
+    <div class="value-line"><span>Content Playbook &amp; Brand Guidelines Doc</span> <span style="font-size:18px; font-weight:600; color:var(--accent);">&pound;500</span></div>
   </div>
 
   <div class="glow-card">
-    <p class="text-secondary mb-8">Total Value</p>
-    <p style="font-size:48px; font-weight:700; margin-bottom:8px;"><s class="text-secondary" style="font-size:32px;">&pound;20,850</s></p>
-    <p style="font-size:52px; font-weight:700; color:var(--green);">&pound;8,500</p>
-    <p class="text-secondary mt-12" style="font-size:16px;">Over 3 months &mdash; less than 60% of the value of a single closed deal</p>
+    <p class="text-secondary mb-8" style="font-size:14px; text-transform:uppercase; letter-spacing:0.1em;">Total Value If Purchased Separately</p>
+    <p style="font-size:52px; font-weight:700; color:var(--green);">&pound;23,850</p>
+    <p class="text-secondary mt-12" style="font-size:15px;">You get all of this for a fraction of the cost &rarr;</p>
   </div>
 </div>
 </div>
@@ -1029,48 +1105,46 @@ details .detail-body ul {
 <!-- SLIDE 16: INVESTMENT -->
 <div class="slide" data-slide="14">
 <div class="slide-inner">
-  <h2 class="mb-12">💼 Investment</h2>
-  <div class="section-divider"></div>
+  <div class="slide-icon">💼</div>
+  <h2 class="mb-32">Investment</h2>
 
-  <div class="grid-2 mb-32" style="max-width:800px; margin-left:auto; margin-right:auto;">
+  <div class="grid-2 mb-32" style="max-width:960px; margin-left:auto; margin-right:auto; gap:32px;">
     <div class="pricing-card featured">
-      <div class="pricing-badge">Recommended</div>
-      <h3 class="mb-8" style="margin-top:8px;">3-Month Partnership</h3>
+      <div class="pricing-badge">3-Month Partnership</div>
+      <h3 class="mb-8" style="margin-top:8px;">Content &amp; Sales Enablement</h3>
       <p class="text-secondary mb-16" style="font-size:15px;">Everything in the value stack</p>
-      <div style="margin-bottom:20px;">
-        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:4px;">Month 1 (Setup + VSL + Content)</p>
-        <p style="font-size:36px; font-weight:700;">&pound;3,500</p>
+      <p style="margin-bottom:4px;"><s class="text-secondary" style="font-size:28px; font-weight:500;">&pound;23,850</s></p>
+      <p class="price-big" style="color:var(--green);">&pound;8,000</p>
+      <p style="display:inline-block; font-size:14px; font-weight:700; color:var(--red); background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); border-radius:20px; padding:4px 16px; margin-top:4px;">You save &pound;15,850</p>
+      <p class="text-secondary mb-20" style="font-size:15px;">Over 3 months</p>
+      <div style="text-align:left; margin-bottom:16px;">
+        <div class="value-line" style="font-size:15px;"><span>Month 1 (Setup + VSL + Content)</span> <span style="font-weight:600;">&pound;3,500</span></div>
+        <div class="value-line" style="font-size:15px;"><span>Month 2 (Content Engine)</span> <span style="font-weight:600;">&pound;2,500</span></div>
+        <div class="value-line" style="font-size:15px;"><span>Month 3 (Content Engine)</span> <span style="font-weight:600;">&pound;2,500</span></div>
       </div>
-      <div style="margin-bottom:20px;">
-        <p style="font-size:16px; color:var(--text-secondary); margin-bottom:4px;">Months 2 &amp; 3 (Content Engine)</p>
-        <p style="font-size:36px; font-weight:700;">&pound;2,500<span class="text-secondary" style="font-size:16px;">/month</span></p>
-      </div>
-      <div style="padding-top:16px; border-top:1px solid var(--card-border);">
-        <p class="text-secondary" style="font-size:14px;">Total: <strong>&pound;8,500</strong> over 3 months</p>
+      <div style="padding:12px 16px; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:10px; text-align:center;">
+        <p style="font-size:14px; color:var(--green); font-weight:600;">&pound;500 discount applied for upfront payment</p>
       </div>
     </div>
 
-    <div class="pricing-card">
-      <h3 class="mb-8">LinkedIn Live Add-On</h3>
-      <p class="text-secondary mb-16" style="font-size:15px;">Feb 26 event push</p>
+    <div class="pricing-card" style="position:relative;">
+      <div style="position:absolute; top:-10px; right:-10px; width:36px; height:36px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:#fff; box-shadow:0 2px 8px rgba(124,58,237,0.4);">+</div>
+      <h3 class="mb-8">LinkedIn Live Push</h3>
+      <p class="text-secondary mb-16" style="font-size:15px;">Feb 26 event &mdash; optional add-on</p>
       <p class="price-big" style="font-size:42px;">&pound;500</p>
       <p class="text-secondary mb-20" style="font-size:15px;">One-time</p>
       <ul class="check-list text-left" style="font-size:15px;">
-        <li>LinkedIn outreach for registrations</li>
-        <li>Personalised invitation campaign</li>
-        <li>Follow-up sequence</li>
-        <li>Post-event conversion outreach</li>
+        <li>Cold email to all podcast guests &amp; warm contacts</li>
+        <li>3-touch invite sequence via Instantly</li>
+        <li>Reply handling &amp; forwarding</li>
+        <li>Post-event conversion follow-up</li>
       </ul>
     </div>
-  </div>
 
-  <div class="card card-sm mb-24" style="text-align:center;">
-    <p style="font-size:18px;"><strong>Total investment:</strong> &pound;9,000 for 3 months of content partnership + LinkedIn Live event push</p>
-    <p class="text-secondary mt-12" style="font-size:16px;">That&rsquo;s <strong>&pound;100/day</strong> for a full content team, VSL production, AI systems, and weekly strategy calls.</p>
-  </div>
-
-  <div class="card card-green card-sm" style="text-align:center;">
-    <p style="font-size:17px;"><strong>The ROI question:</strong> At &pound;12-24K customer LTV, Ripple only needs to close <strong class="text-green">1 additional deal</strong> from content, the VSL, or the LinkedIn Live event to get a <strong class="text-green">33-167% return</strong> on this investment.</p>
+    <div class="pricing-card" style="text-align:center; grid-column: 1 / -1;">
+      <p class="playfair-quote" style="font-size:22px; color:var(--text); font-style:italic; margin-bottom:12px;">&ldquo;If all this did was close <strong>one additional deal</strong> at &pound;12-24K LTV&hellip; would it be worth &pound;8,500?&rdquo;</p>
+      <p class="text-secondary" style="font-size:16px;">That&rsquo;s a <strong class="text-green">41-182% return</strong> from a single closed customer. Everything after that is profit.</p>
+    </div>
   </div>
 </div>
 </div>
@@ -1078,7 +1152,8 @@ details .detail-body ul {
 <!-- SLIDE 17: 90-DAY TIMELINE -->
 <div class="slide" data-slide="15">
 <div class="slide-inner">
-  <h2 class="mb-32">🗓️ 90-Day Timeline</h2>
+  <div class="slide-icon">🗓️</div>
+  <h2 class="mb-32">90-Day Timeline</h2>
 
   <div class="tl-grid">
     <div class="tl-card">
@@ -1088,7 +1163,7 @@ details .detail-body ul {
         <li>Kickoff call &mdash; deep-dive into positioning, ICP, competitors</li>
         <li>VSL script development begins</li>
         <li>Content strategy &amp; brand voice document</li>
-        <li>ActiveCampaign setup for newsletter</li>
+        <li>Newsletter automation setup</li>
         <li class="milestone">Milestone: VSL script approved</li>
       </ul>
     </div>
@@ -1097,9 +1172,9 @@ details .detail-body ul {
       <span class="tl-badge tl-badge-purple">Week 2-3</span>
       <h4>LinkedIn Live Push</h4>
       <ul>
-        <li>LinkedIn outreach campaign for Feb 26 event</li>
-        <li>Registration follow-up sequences</li>
-        <li>Event promotion content</li>
+        <li>Cold email campaign to podcast guests &amp; warm contacts via Instantly</li>
+        <li>3-touch invite sequence + registration follow-ups</li>
+        <li>Reply handling &amp; forwarding to Ripple team</li>
         <li class="milestone">Milestone: 150 registrations target</li>
       </ul>
     </div>
@@ -1131,7 +1206,7 @@ details .detail-body ul {
     <div class="tl-card tl-full">
       <span class="tl-badge tl-badge-green">Month 3</span>
       <h4>Compound &amp; Convert</h4>
-      <ul>
+      <ul style="columns:2; column-gap:32px;">
         <li>40+ pieces of content live &mdash; organic reach compounding</li>
         <li>Adrian established as thought leader in logistics AI</li>
         <li>Newsletter subscriber list growing</li>
@@ -1147,14 +1222,15 @@ details .detail-body ul {
 <!-- SLIDE 18: CLOSE + FAQ -->
 <div class="slide" data-slide="16">
 <div class="slide-inner">
-  <h2 class="mb-12">🤝 Let&rsquo;s Get Started</h2>
-  <div class="section-divider"></div>
+  <div class="slide-icon">🤝</div>
+  <h2 class="mb-12">Let&rsquo;s Get Started</h2>
+
 
   <div class="card card-violet mb-32 text-center">
     <h3 class="mb-12">Next Step</h3>
     <p style="font-size:20px; margin-bottom:16px;">Confirm the partnership and we start the kickoff process <strong>this week</strong>.</p>
-    <p class="text-secondary" style="font-size:17px;">Month 1 invoice: &pound;3,500 + &pound;500 (LinkedIn Live) = <strong>&pound;4,000</strong></p>
-    <p class="text-secondary" style="font-size:16px; margin-top:8px;">Months 2-3: &pound;2,500/month</p>
+    <p class="text-secondary" style="font-size:17px;">3-month partnership: <s>&pound;23,850</s> &nbsp;&rarr;&nbsp; <strong style="color:var(--green);">&pound;8,000</strong> (upfront)</p>
+    <p class="text-secondary" style="font-size:16px; margin-top:8px;">Optional: LinkedIn Live push +&pound;500</p>
   </div>
 
   <h3 class="mb-16">Common Questions</h3>
@@ -1166,7 +1242,7 @@ details .detail-body ul {
 
   <details class="faq-item">
     <summary>How much time does Adrian need to commit?</summary>
-    <div class="faq-body">One 10-15 minute Loom recording per week + 30 minutes for the weekly strategy call. Total: ~45 minutes per week. We handle everything else &mdash; editing, writing, publishing, analytics, newsletter, strategy.</div>
+    <div class="faq-body">One 15-20 minute Loom recording per week (record and publish &mdash; no fancy editing needed) + 30 minutes for the weekly strategy call. Total: ~1 hour per week. We handle strategy, briefs, thumbnails, titles, content repurposing, newsletter, and analytics.</div>
   </details>
 
   <details class="faq-item">
@@ -1175,8 +1251,8 @@ details .detail-body ul {
   </details>
 
   <details class="faq-item">
-    <summary>Do we need ActiveCampaign?</summary>
-    <div class="faq-body">Yes, for the auto-newsletter system. It&rsquo;s ~&pound;80/month and the only software cost on your side. We handle the setup, template design, and automation &mdash; you just approve the content before it sends.</div>
+    <summary>Do we need any extra software for the newsletter?</summary>
+    <div class="faq-body">No. The auto-newsletter runs from your existing email accounts &mdash; no extra subscriptions required. We handle the full automation setup, template design, and AI copywriting. You just approve the content before it sends.</div>
   </details>
 
   <details class="faq-item">
