@@ -43,8 +43,8 @@ html, body {
   position: absolute;
   inset: 0;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity 500ms ease, transform 500ms ease;
@@ -52,8 +52,12 @@ html, body {
   overflow-y: auto;
   padding: 50px 40px 80px;
 }
+.slide::before,
+.slide::after {
+  content: '';
+  flex: 1 1 0px;
+}
 .slide.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.slide.center-v { align-items: center; }
 
 .slide::-webkit-scrollbar { width: 6px; }
 .slide::-webkit-scrollbar-track { background: transparent; }
@@ -64,6 +68,7 @@ html, body {
   max-width: 960px;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 h1, h2, h3, h4, h5 { font-family: 'Inter', sans-serif; font-weight: 700; line-height: 1.15; }
@@ -122,9 +127,9 @@ strong { font-weight: 700; }
 .card-blue { border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.05); }
 .card-red { border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.05); }
 
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: stretch; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; align-items: stretch; }
 
 .bullet-list { list-style: none; padding: 0; }
 .bullet-list li {
@@ -176,12 +181,13 @@ strong { font-weight: 700; }
 
 .flow-row {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 6px;
   font-size: 13px;
   text-align: center;
 }
+.flow-arrow { display: flex; align-items: center; }
 .flow-box {
   background: rgba(124,58,237,0.1);
   border-radius: 8px;
@@ -189,6 +195,9 @@ strong { font-weight: 700; }
   flex: 1 1 0;
   min-width: 0;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .flow-box-green {
   background: rgba(34,197,94,0.1);
@@ -197,6 +206,9 @@ strong { font-weight: 700; }
   flex: 1 1 0;
   min-width: 0;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .flow-box-amber {
   background: rgba(245,158,11,0.1);
@@ -205,6 +217,9 @@ strong { font-weight: 700; }
   flex: 1 1 0;
   min-width: 0;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .flow-arrow { color: var(--accent); font-size: 16px; flex-shrink: 0; }
 
@@ -243,7 +258,8 @@ strong { font-weight: 700; }
   text-align: center;
   padding: 28px 32px;
   border-radius: var(--radius);
-  min-width: 180px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 .gap-arrow {
   font-size: 18px;
@@ -361,6 +377,84 @@ strong { font-weight: 700; }
 .agent-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
 .agent-role { font-size: 13px; color: var(--text-secondary); line-height: 1.4; }
 
+/* Tool thumbnail grid for overview slide */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.tool-thumb {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+.tool-thumb:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(124,58,237,0.15);
+  transform: translateY(-2px);
+}
+.tool-thumb img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+}
+.tool-thumb-info {
+  padding: 12px 14px;
+}
+.tool-thumb-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.tool-thumb-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+
+/* Screenshot gallery for deep-dive slides */
+.screenshot-hero {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+  display: block;
+  margin-bottom: 16px;
+}
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.screenshot-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.screenshot-grid img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  display: block;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.screenshot-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 32px rgba(124,58,237,0.15);
+}
+.screenshot-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
 .stack-details {
   background: var(--card);
   border: 1px solid var(--card-border);
@@ -451,11 +545,16 @@ strong { font-weight: 700; }
 .small { font-size: 14px; }
 .muted { color: var(--text-secondary); opacity: 0.6; }
 
+.agent-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+
 @media (max-width: 1024px) {
   .slide { padding: 40px 24px 80px; }
   h1 { font-size: 40px; }
   h2 { font-size: 36px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .agent-grid { grid-template-columns: repeat(3, 1fr); }
+  .tool-grid { grid-template-columns: repeat(2, 1fr); }
+  .screenshot-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
   .flow-row { flex-wrap: wrap; }
   .gap-visual { flex-direction: column; gap: 12px; }
   .gap-arrow { transform: rotate(90deg); }
@@ -466,6 +565,10 @@ strong { font-weight: 700; }
   h2 { font-size: 28px; }
   h3 { font-size: 22px; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 16px; }
+  .agent-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .tool-grid { grid-template-columns: 1fr; }
+  .screenshot-grid, .screenshot-grid.cols-3 { grid-template-columns: 1fr; }
+  .tool-thumb img { height: 120px; }
   .card { padding: 20px; }
   .card-sm { padding: 16px; }
   .stat .num { font-size: 36px; }
@@ -573,8 +676,8 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 <div class="deck" id="deck">
 
 <!-- SLIDE 1: TITLE -->
-<div class="slide center-v active" data-slide="1">
-<div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
+<div class="slide active" data-slide="1">
+<div class="slide-inner text-center">
   <p class="eyebrow mb-24" style="font-size:15px; letter-spacing:0.2em;">DOPAMINE DIGITAL</p>
   <h1 style="font-size:50px; margin-bottom:20px;">The <span class="text-accent">AI Growth Engine</span> for Ripple</h1>
   <p class="subtitle" style="max-width:740px; margin:0 auto 40px;">Workshops, AI outbound, and content that position Ripple as the category leader in AI logistics &mdash; and fill your pipeline automatically</p>
@@ -669,17 +772,17 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 </div>
 
 <!-- SLIDE 4: THE ONE THING -->
-<div class="slide center-v" data-slide="4">
-<div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
+<div class="slide" data-slide="4">
+<div class="slide-inner text-center">
   <p class="eyebrow mb-20">The One Thing</p>
-  <h2 class="mb-32" style="font-size:40px; max-width:800px; margin-left:auto; margin-right:auto;">You close deals once you&rsquo;re on a demo. Your product speaks for itself.</h2>
+  <h2 class="mb-32" style="font-size:40px;">You close deals once you&rsquo;re on a demo. Your product speaks for itself.</h2>
 
-  <div class="glow-card mb-32 shine-border" style="max-width:720px; margin:0 auto;">
+  <div class="glow-card mb-32 shine-border">
     <p style="font-size:26px; font-weight:700; margin-bottom:16px;">The <span class="text-accent">only</span> thing missing is a system that:</p>
     <p style="font-size:20px; color:var(--text-secondary); line-height:1.7;">Positions you as the authority in AI logistics<br>AND fills your pipeline automatically</p>
   </div>
 
-  <div class="quote-card" style="max-width:720px; margin:0 auto;">
+  <div class="quote-card">
     <p>&ldquo;Once we&rsquo;re on a demo, they understand it. It&rsquo;s just getting them onto the demo.&rdquo;</p>
     <p style="font-size:14px; color:var(--text-secondary); margin-top:12px; font-style:normal; font-family:'Inter',sans-serif;">&mdash; Adrian Smith, Jan 13 call</p>
   </div>
@@ -816,123 +919,268 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 </div>
 </div>
 
-<!-- SLIDE 8: WE DON'T JUST CONSULT — WE BUILD -->
+<!-- SLIDE 8: WE DON'T JUST CONSULT — WE BUILD (OVERVIEW) -->
 <div class="slide" data-slide="8">
 <div class="slide-inner">
   <p class="eyebrow">Proof of Capability</p>
   <h2 class="mb-8">We Don&rsquo;t Just Consult &mdash; <span class="text-accent">We Build</span></h2>
-  <p class="subtitle mb-32">7 AI tools running in production right now</p>
+  <p class="subtitle mb-20">Every screenshot below is a real, working product. We deploy the same stack into Ripple.</p>
 
-  <div class="grid-4 mb-24" style="align-items:stretch;">
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-accent">7</p>
-        <p class="label">AI Tools Built</p>
+  <div class="grid-4 mb-20" style="align-items:stretch;">
+    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:16px;">
+      <div class="stat" style="padding:12px 8px;">
+        <p class="num text-accent" style="font-size:36px;">7</p>
+        <p class="label" style="font-size:13px;">AI Products Built</p>
       </div>
     </div>
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-green">196</p>
-        <p class="label">Nodes (Largest Automation)</p>
+    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:16px;">
+      <div class="stat" style="padding:12px 8px;">
+        <p class="num text-green" style="font-size:36px;">196</p>
+        <p class="label" style="font-size:13px;">Nodes (Largest Flow)</p>
       </div>
     </div>
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-amber">18</p>
-        <p class="label">AI Agents Running</p>
+    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:16px;">
+      <div class="stat" style="padding:12px 8px;">
+        <p class="num text-amber" style="font-size:36px;">18</p>
+        <p class="label" style="font-size:13px;">AI Agents Running</p>
       </div>
     </div>
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-blue">&lt;60s</p>
-        <p class="label">Lead Reply Time</p>
+    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:16px;">
+      <div class="stat" style="padding:12px 8px;">
+        <p class="num text-blue" style="font-size:36px;">&lt;60s</p>
+        <p class="label" style="font-size:13px;">Lead Reply Time</p>
       </div>
     </div>
   </div>
 
-  <img src="assets/mission_control.jpg" alt="DD Mission Control" class="proof-img mb-24">
+  <div class="tool-grid">
+    <div class="tool-thumb fade-up">
+      <img src="assets/le-overview.png" alt="Lead Engine">
+      <div class="tool-thumb-info">
+        <h4>Lead Engine</h4>
+        <p>87 leads found, scored, and enriched in 30 minutes</p>
+      </div>
+    </div>
+    <div class="tool-thumb fade-up">
+      <img src="assets/pc-kanban.png" alt="Pipeline Command">
+      <div class="tool-thumb-info">
+        <h4>Pipeline Command</h4>
+        <p>Full pipeline tracking from first touch to closed deal</p>
+      </div>
+    </div>
+    <div class="tool-thumb fade-up">
+      <img src="assets/rc-live-session.png" alt="Recording Companion">
+      <div class="tool-thumb-info">
+        <h4>Recording Companion</h4>
+        <p>Live AI coaching on every sales call + auto-debrief</p>
+      </div>
+    </div>
+    <div class="tool-thumb fade-up">
+      <img src="assets/mc-home.png" alt="Mission Control">
+      <div class="tool-thumb-info">
+        <h4>Mission Control</h4>
+        <p>Revenue, agents, clients, and campaigns in one view</p>
+      </div>
+    </div>
+    <div class="tool-thumb fade-up">
+      <img src="assets/odf-n8n-196-nodes.png" alt="Speed-to-Lead">
+      <div class="tool-thumb-info">
+        <h4>Speed-to-Lead</h4>
+        <p>196-node automation replies in under 60 seconds</p>
+      </div>
+    </div>
+    <div class="tool-thumb fade-up">
+      <img src="assets/pm-kanban.png" alt="Project Manager">
+      <div class="tool-thumb-info">
+        <h4>Project Manager</h4>
+        <p>Every project tracked and visible across all clients</p>
+      </div>
+    </div>
+  </div>
 
   <div class="card card-violet card-sm" style="text-align:center;">
-    <p style="font-size:17px;">This isn&rsquo;t a proposal deck from a consulting firm. <strong>We built exactly this.</strong> Let us show you how it works.</p>
+    <p style="font-size:16px;">This isn&rsquo;t a proposal from a consulting firm. <strong>Every product above is built and running live.</strong> We deploy the same stack into Ripple&rsquo;s engine.</p>
   </div>
 </div>
 </div>
 
-<!-- SLIDE 9: SPEED-TO-LEAD SYSTEM -->
+<!-- SLIDE 9: LEAD ENGINE (DEEP DIVE) -->
 <div class="slide" data-slide="9">
 <div class="slide-inner">
-  <p class="eyebrow">Live System</p>
-  <h2 class="mb-8"><span class="text-accent">Speed-to-Lead</span> System</h2>
-  <p class="subtitle mb-24">196 nodes. Replies to leads in under 60 seconds. Books Calendly automatically.</p>
+  <p class="eyebrow">Live Product</p>
+  <h2 class="mb-8">The <span class="text-accent">Lead Engine</span></h2>
+  <p class="subtitle mb-16">One click. 3 AI agents find, clean, enrich, score, and distribute leads in 30 minutes.</p>
 
-  <img src="assets/odf-n8n-196-nodes.png" alt="196-Node Automation" class="proof-img mb-24">
-
-  <p class="text-center mb-16" style="font-size:14px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em;">12-Stage Pipeline</p>
-  <div class="flow-row mb-24" style="font-size:12px;">
-    <div class="flow-box">Inbound Lead</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">AI Qualification</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Enrichment</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Personalization</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box-green">AI Reply</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box-green">Book Call</div>
+  <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; margin-bottom:16px;">
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--green); line-height:1;">87</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Leads Found</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--accent); line-height:1;">13</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Good Fits (A+/A)</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--green); line-height:1;">70%</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Email Hit Rate</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--amber); line-height:1;">30m</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Total Duration</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--blue); line-height:1;">71.8</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Avg ICP Score</p>
+    </div>
   </div>
-  <div class="flow-row mb-32" style="font-size:12px;">
-    <div class="flow-box-amber">OOO Handler</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box-amber">Objection Handler</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Follow-Up Queue</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">CRM Update</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box">Slack Alert</div>
-    <span class="flow-arrow">&rarr;</span>
-    <div class="flow-box-green">Pipeline</div>
+
+  <img src="assets/le-overview.png" alt="Lead Engine Overview" class="screenshot-hero">
+
+  <div class="screenshot-grid mb-16">
+    <div>
+      <img src="assets/le-controls.png" alt="Lead Engine Controls">
+      <p class="screenshot-label">Controls &mdash; Auto-Find, Upload CSV, Expandi Search</p>
+    </div>
+    <div>
+      <img src="assets/le-leads.png" alt="Lead Engine Leads Table">
+      <p class="screenshot-label">Leads Table &mdash; AI-graded A+ to D with scores</p>
+    </div>
+    <div>
+      <img src="assets/le-find-emails.png" alt="Lead Engine Find Emails">
+      <p class="screenshot-label">Find Emails &mdash; 5-source waterfall verification</p>
+    </div>
+    <div>
+      <img src="assets/le-pipeline.png" alt="Lead Engine Pipeline Progress">
+      <p class="screenshot-label">Pipeline Progress &mdash; 6 automated steps, live log</p>
+    </div>
+  </div>
+
+  <div class="card card-violet card-sm" style="text-align:center;">
+    <p style="font-size:16px;">We build the same engine for Ripple&rsquo;s <strong class="text-accent">customs + drayage ICP</strong>. Press a button, get qualified leads with verified emails.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 10: PIPELINE COMMAND (DEEP DIVE) -->
+<div class="slide" data-slide="10">
+<div class="slide-inner">
+  <p class="eyebrow">Live Product</p>
+  <h2 class="mb-8"><span class="text-accent">Pipeline Command</span></h2>
+  <p class="subtitle mb-16">Every lead tracked from first touch to closed deal. Real-time forecasting and daily actions.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-bottom:16px;">
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--accent); line-height:1;">20</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Leads Tracked</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--green); line-height:1;">$187K</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Pipeline Value</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--amber); line-height:1;">$107K</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Weighted Pipeline</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--green); line-height:1;">33%</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Conversion Rate</p>
+    </div>
+  </div>
+
+  <img src="assets/pc-kanban.png" alt="Pipeline Command Kanban" class="screenshot-hero">
+
+  <div class="screenshot-grid cols-3 mb-16">
+    <div>
+      <img src="assets/pc-overview.png" alt="Pipeline Command Overview">
+      <p class="screenshot-label">Overview &mdash; Health score + top opportunities</p>
+    </div>
+    <div>
+      <img src="assets/pc-actions.png" alt="Pipeline Command Actions">
+      <p class="screenshot-label">Actions &mdash; AI-ranked daily priorities</p>
+    </div>
+    <div>
+      <img src="assets/pc-lead-detail.png" alt="Pipeline Command Lead Detail">
+      <p class="screenshot-label">Lead Detail &mdash; Engagement, docs, activity log</p>
+    </div>
+  </div>
+
+  <div class="card card-violet card-sm" style="text-align:center;">
+    <p style="font-size:16px;">Full visibility into what&rsquo;s working, what&rsquo;s stalling, and <strong class="text-accent">exactly what to do next</strong>. No lead falls through the cracks.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 10b: RECORDING COMPANION (DEEP DIVE) -->
+<div class="slide" data-slide="10b">
+<div class="slide-inner">
+  <p class="eyebrow">Live Product</p>
+  <h2 class="mb-8"><span class="text-green">Recording Companion</span></h2>
+  <p class="subtitle mb-16">AI sits on every sales call. Coaches in real-time. Scores and debriefs after.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px; margin-bottom:16px;">
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--green); line-height:1;">Live</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">In-Call Coaching</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--accent); line-height:1;">4</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Sales Frameworks</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--amber); line-height:1;">Auto</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Post-Call Debrief</p>
+    </div>
+    <div class="card card-sm" style="text-align:center; padding:12px 8px; display:flex; flex-direction:column; justify-content:center;">
+      <p style="font-size:26px; font-weight:800; color:var(--blue); line-height:1;">39%</p>
+      <p style="font-size:11px; color:var(--text-secondary); margin-top:4px;">Talk Ratio Tracking</p>
+    </div>
+  </div>
+
+  <img src="assets/rc-live-session.png" alt="Recording Companion Live Session" class="screenshot-hero">
+
+  <div class="screenshot-grid mb-16">
+    <div>
+      <img src="assets/rc-home-new.png" alt="Recording Companion Home">
+      <p class="screenshot-label">Session Types &mdash; Podcast, Discovery, Sales, Follow-Up</p>
+    </div>
+    <div>
+      <img src="assets/rc-debrief-score.png" alt="Recording Companion Debrief">
+      <p class="screenshot-label">Debrief &mdash; Gap Selling, Hormozi, VISA scoring</p>
+    </div>
+  </div>
+
+  <div class="card card-green card-sm" style="text-align:center;">
+    <p style="font-size:16px;">Adrian closes when he&rsquo;s on a demo. This makes sure <strong class="text-green">every call is optimised</strong> &mdash; live coaching during, automated debrief after.</p>
+  </div>
+</div>
+</div>
+
+<!-- SLIDE 10c: MISSION CONTROL (DEEP DIVE) -->
+<div class="slide" data-slide="10c">
+<div class="slide-inner">
+  <p class="eyebrow">Live Product</p>
+  <h2 class="mb-8"><span class="text-accent">Mission Control</span></h2>
+  <p class="subtitle mb-16">Revenue, clients, AI agents, and finances &mdash; all in one real-time dashboard.</p>
+
+  <img src="assets/mc-home.png" alt="Mission Control Home" class="screenshot-hero">
+
+  <div class="screenshot-grid cols-3 mb-16">
+    <div>
+      <img src="assets/mc-clients.png" alt="Mission Control Clients">
+      <p class="screenshot-label">Clients &mdash; Health scores, pipelines, guarantee tracking</p>
+    </div>
+    <div>
+      <img src="assets/mc-agents.png" alt="Mission Control AI Agents">
+      <p class="screenshot-label">AI Agents &mdash; 18 agents with live task management</p>
+    </div>
+    <div>
+      <img src="assets/mc-finances.png" alt="Mission Control Finances">
+      <p class="screenshot-label">Finances &mdash; Revenue, margins, client profitability</p>
+    </div>
   </div>
 
   <div class="card card-sm" style="text-align:center;">
-    <p style="font-size:17px;">Handles OOO, not-interested, questions, and objections autonomously. <strong class="text-green">Replaces an SDR.</strong> Running live for B2B clients right now.</p>
-  </div>
-</div>
-</div>
-
-<!-- SLIDE 10: AI LEAD ENGINE + PIPELINE COMMAND -->
-<div class="slide" data-slide="10">
-<div class="slide-inner">
-  <p class="eyebrow">Live System</p>
-  <h2 class="mb-8"><span class="text-accent">AI Lead Engine</span> + Pipeline Command</h2>
-  <p class="subtitle mb-24">87 leads found, qualified, and enriched in 30 minutes</p>
-
-  <img src="assets/lead_response_workflow.jpg" alt="Lead Response Workflow" class="proof-img mb-24">
-
-  <div class="grid-3 mb-24" style="align-items:stretch;">
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-accent">87</p>
-        <p class="label">Leads in 30 Minutes</p>
-      </div>
-    </div>
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-green">3</p>
-        <p class="label">AI Agents Working</p>
-      </div>
-    </div>
-    <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center;">
-      <div class="stat">
-        <p class="num text-amber">70%</p>
-        <p class="label">Verified Email Hit Rate</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card card-violet card-sm" style="text-align:center;">
-    <p style="font-size:17px;">Pipeline Command is the dashboard that tracks every lead from first touch to closed deal. <strong class="text-accent">Full visibility, zero guesswork.</strong></p>
+    <p style="font-size:16px;">You and Jonny see <strong class="text-accent">everything in real time</strong> &mdash; which campaigns are working, which leads are hot, and where every dollar is going.</p>
   </div>
 </div>
 </div>
@@ -1179,43 +1427,51 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
   <div class="card card-sm mb-24">
     <div class="value-row">
       <span>AI Outbound Engine (LinkedIn + Email)</span>
-      <span class="value-amount">&pound;3,000</span>
+      <span class="value-amount">&pound;5,000</span>
     </div>
     <div class="value-row">
       <span>AI Lead Magnet Development (3 tools)</span>
-      <span class="value-amount">&pound;4,000</span>
-    </div>
-    <div class="value-row">
-      <span>Workshop Strategy + Deck Design</span>
-      <span class="value-amount">&pound;2,000</span>
-    </div>
-    <div class="value-row">
-      <span>LinkedIn Live Attendee Follow-Up System</span>
-      <span class="value-amount">&pound;1,500</span>
-    </div>
-    <div class="value-row">
-      <span>Speed-to-Lead Automation</span>
-      <span class="value-amount">&pound;3,000</span>
-    </div>
-    <div class="value-row">
-      <span>Pipeline Command Dashboard</span>
-      <span class="value-amount">&pound;2,500</span>
-    </div>
-    <div class="value-row">
-      <span>Content Engine (3 months &mdash; video briefs, scripts, clips, social)</span>
       <span class="value-amount">&pound;6,000</span>
     </div>
     <div class="value-row">
-      <span>Weekly Strategy Calls (up to 8)</span>
+      <span>Workshop Strategy + Deck Design</span>
+      <span class="value-amount">&pound;3,000</span>
+    </div>
+    <div class="value-row">
+      <span>LinkedIn Live Attendee Follow-Up System</span>
       <span class="value-amount">&pound;2,000</span>
     </div>
     <div class="value-row">
+      <span>Speed-to-Lead Automation (196-node engine)</span>
+      <span class="value-amount">&pound;5,000</span>
+    </div>
+    <div class="value-row">
+      <span>Pipeline Command Dashboard</span>
+      <span class="value-amount">&pound;4,000</span>
+    </div>
+    <div class="value-row">
+      <span>AI Auto-Reply + Call Intelligence Suite</span>
+      <span class="value-amount">&pound;3,500</span>
+    </div>
+    <div class="value-row">
+      <span>Content Engine (3 months &mdash; video briefs, scripts, clips, social)</span>
+      <span class="value-amount">&pound;9,000</span>
+    </div>
+    <div class="value-row">
+      <span>Weekly Strategy Calls (up to 8)</span>
+      <span class="value-amount">&pound;3,000</span>
+    </div>
+    <div class="value-row">
       <span>30-Day Priority Support</span>
-      <span class="value-amount">&pound;1,000</span>
+      <span class="value-amount">&pound;1,500</span>
+    </div>
+    <div class="value-row">
+      <span style="color:var(--green);">&#127873; BONUS: Weekly 30-Min Strategy Call with Jordan</span>
+      <span class="value-amount">&pound;4,800</span>
     </div>
     <div class="value-row" style="border-top:2px solid rgba(124,58,237,0.3); padding-top:16px; margin-top:8px;">
       <span style="font-weight:700; font-size:19px;">Total Standalone Value</span>
-      <span style="font-weight:800; font-size:22px; color:var(--accent);">&pound;25,000</span>
+      <span style="font-weight:800; font-size:22px; color:var(--accent);">&pound;46,800</span>
     </div>
   </div>
 
@@ -1229,14 +1485,13 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
   <p class="eyebrow">Investment</p>
   <h2 class="mb-32">Two Options</h2>
 
-  <div class="grid-2 mb-32" style="max-width:960px; margin:0 auto; gap:32px; align-items:stretch;">
+  <div class="grid-2 mb-24" style="gap:32px;">
     <div class="pricing-card" style="display:flex; flex-direction:column;">
-      <h4 class="mb-4" style="font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-secondary);">Option A</h4>
-      <h3 class="mb-8">AI Growth Engine</h3>
-      <p class="price-strike mb-4">&pound;25,000</p>
-      <p class="price-big text-accent">&pound;5,000</p>
-      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">Upfront</p>
-      <ul class="check-list" style="flex:1; margin-bottom:24px;">
+      <h4 class="mb-4" style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-secondary);">Option A</h4>
+      <h3 class="mb-8" style="font-size:24px;">AI Outbound Engine</h3>
+      <p class="price-big text-accent">&pound;15,000</p>
+      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:20px;">Upfront</p>
+      <ul class="check-list" style="flex:1; margin-bottom:12px; font-size:14px;">
         <li>AI Outbound Engine (LinkedIn + email)</li>
         <li>3 AI Lead Magnets built</li>
         <li>Workshop deck + attendee follow-up</li>
@@ -1244,17 +1499,19 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
         <li>4 weekly strategy calls</li>
         <li>30 days priority support</li>
       </ul>
-      <p style="font-size:14px; color:var(--green); font-weight:600;">Best for: getting the outbound machine running fast</p>
+      <div style="background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:8px; padding:8px 12px; margin-bottom:16px;">
+        <p style="font-size:13px; color:var(--green); font-weight:600;">&#127873; BONUS: Weekly 30-min strategy call with Jordan</p>
+      </div>
+      <p style="font-size:13px; color:var(--green); font-weight:600;">Best for: getting pipeline running fast</p>
     </div>
 
     <div class="pricing-card featured price-featured" style="display:flex; flex-direction:column;">
       <div class="pricing-badge">Recommended</div>
-      <h4 class="mb-4" style="font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-secondary);">Option B</h4>
-      <h3 class="mb-8">Full AI Growth Engine + Content</h3>
-      <p class="price-strike mb-4">&pound;25,000</p>
-      <p class="price-big text-green">&pound;10,000</p>
-      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">Upfront</p>
-      <ul class="check-list" style="flex:1; margin-bottom:24px;">
+      <h4 class="mb-4" style="font-size:13px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-secondary);">Option B</h4>
+      <h3 class="mb-8" style="font-size:24px;">Outbound + Content Engine</h3>
+      <p class="price-big text-green">&pound;24,000</p>
+      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:20px;">Upfront</p>
+      <ul class="check-list" style="flex:1; margin-bottom:12px; font-size:14px;">
         <li>Everything in Option A</li>
         <li>Content Engine (3 months)</li>
         <li>Speed-to-Lead automation</li>
@@ -1262,12 +1519,11 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
         <li>8 weekly strategy calls</li>
         <li>Help run first 3 workshops</li>
       </ul>
-      <p style="font-size:14px; color:var(--green); font-weight:600;">Best for: owning the category and building a content moat</p>
+      <div style="background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:8px; padding:8px 12px; margin-bottom:16px;">
+        <p style="font-size:13px; color:var(--green); font-weight:600;">&#127873; BONUS: Weekly 30-min strategy call with Jordan</p>
+      </div>
+      <p style="font-size:13px; color:var(--green); font-weight:600;">Best for: owning the category + content moat</p>
     </div>
-  </div>
-
-  <div class="card card-sm" style="text-align:center;">
-    <p style="font-size:17px;">Both options include full AI infrastructure build. Option B adds the content layer that compounds visibility over time.</p>
   </div>
 </div>
 </div>
@@ -1297,8 +1553,8 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
       <p style="font-size:36px; font-weight:800; color:var(--text); margin-bottom:8px;">1 Customer</p>
       <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; flex:1;">From outbound + workshops in 90 days</p>
       <div style="padding:12px; background:rgba(34,197,94,0.08); border-radius:8px;">
-        <p style="font-size:20px; font-weight:700; color:var(--green);">3-5x ROI</p>
-        <p style="font-size:13px; color:var(--text-secondary);">on &pound;5K-10K investment</p>
+        <p style="font-size:20px; font-weight:700; color:var(--green);">2x ROI</p>
+        <p style="font-size:13px; color:var(--text-secondary);">$30K+ return on &pound;15K</p>
       </div>
     </div>
     <div class="card card-blue card-sm fade-up" style="display:flex; flex-direction:column; text-align:center;">
@@ -1306,7 +1562,7 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
       <p style="font-size:36px; font-weight:800; color:var(--text); margin-bottom:8px;">2-3 Customers</p>
       <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; flex:1;">Outbound + workshops + content pipeline</p>
       <div style="padding:12px; background:rgba(59,130,246,0.08); border-radius:8px;">
-        <p style="font-size:20px; font-weight:700; color:var(--blue);">6-15x ROI</p>
+        <p style="font-size:20px; font-weight:700; color:var(--blue);">4-6x ROI</p>
         <p style="font-size:13px; color:var(--text-secondary);">$60-150K in pipeline value</p>
       </div>
     </div>
@@ -1315,14 +1571,14 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
       <p style="font-size:36px; font-weight:800; color:var(--text); margin-bottom:8px;">5+ Customers</p>
       <p style="font-size:14px; color:var(--text-secondary); margin-bottom:16px; flex:1;">Full engine running + content compounding</p>
       <div style="padding:12px; background:rgba(34,197,94,0.08); border-radius:8px;">
-        <p style="font-size:20px; font-weight:700; color:var(--green);">15-25x ROI</p>
+        <p style="font-size:20px; font-weight:700; color:var(--green);">10x+ ROI</p>
         <p style="font-size:13px; color:var(--text-secondary);">$150-250K+ in pipeline value</p>
       </div>
     </div>
   </div>
 
   <div class="card card-green card-sm" style="text-align:center;">
-    <p style="font-size:18px;"><strong>If ONE customer closes from the AI engine at $30K LTV &mdash; that&rsquo;s 3-6x your investment back.</strong> Everything after that is pure upside.</p>
+    <p style="font-size:18px;"><strong>If ONE customer closes from the AI engine at $30K LTV &mdash; that covers the entire &pound;15K investment.</strong> Everything after that is pure upside.</p>
   </div>
 </div>
 </div>
@@ -1382,15 +1638,16 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 </div>
 
 <!-- SLIDE 20: GUARANTEE -->
-<div class="slide center-v" data-slide="20">
-<div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
+<div class="slide" data-slide="20">
+<div class="slide-inner text-center">
   <p class="eyebrow mb-20">Our Promise</p>
   <h2 class="mb-32">The <span class="text-green">Guarantee</span></h2>
 
-  <div class="card card-green card-sm guarantee-glow shine-border" style="max-width:720px; margin:0 auto 32px; padding:48px 40px;">
+  <div class="card card-green card-sm guarantee-glow shine-border" style="margin-bottom:32px; padding:48px 40px;">
     <p style="font-size:40px; margin-bottom:16px;">&#128737;</p>
-    <p style="font-size:24px; font-weight:700; margin-bottom:16px;">If the outbound engine doesn&rsquo;t generate qualified demos in 90 days, we keep working for free until it does.</p>
-    <p style="font-size:17px; color:var(--text-secondary); line-height:1.6;">No weasel words. No fine print. If the system doesn&rsquo;t deliver qualified conversations for Ripple, we stay on until it does &mdash; at our cost, not yours.</p>
+    <p style="font-size:28px; font-weight:800; margin-bottom:8px;">&pound;150,000 in Pipeline</p>
+    <p style="font-size:22px; font-weight:700; margin-bottom:16px;">or we keep working for free.</p>
+    <p style="font-size:17px; color:var(--text-secondary); line-height:1.6;">No weasel words. No fine print. If the AI Growth Engine doesn&rsquo;t add &pound;150K in qualified pipeline for Ripple, we stay on at our cost until it does.</p>
   </div>
 
   <p class="small muted" style="max-width:500px; margin:0 auto;">We can make this guarantee because we&rsquo;ve built this infrastructure before and we know it works.</p>
@@ -1403,7 +1660,7 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
   <p class="eyebrow">Common Questions</p>
   <h2 class="mb-32">Let&rsquo;s Address the Elephants</h2>
 
-  <div style="max-width:720px; margin:0 auto;">
+  <div>
     <details class="stack-details">
       <summary>&ldquo;We already have LinkedIn people&rdquo;</summary>
       <div class="detail-body">
@@ -1438,11 +1695,11 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
     </details>
 
     <details class="stack-details">
-      <summary>&ldquo;&pound;10K is a big commitment&rdquo;</summary>
+      <summary>&ldquo;That&rsquo;s a big commitment&rdquo;</summary>
       <div class="detail-body">
         <ul>
-          <li>One customer at $30K LTV pays for the entire engagement 3-6x over. The question isn&rsquo;t whether &pound;10K is a lot &mdash; it&rsquo;s whether leaving $30K+ per missed lead on the table is acceptable.</li>
-          <li>Option A at &pound;5K gets you the outbound machine running. You can always add the content engine later. But content compounds &mdash; the sooner you start, the bigger the moat.</li>
+          <li>One customer at $30K LTV covers the &pound;15K investment. The question isn&rsquo;t whether the investment is big &mdash; it&rsquo;s whether leaving $30K+ per missed lead on the table is acceptable.</li>
+          <li>Option A at &pound;15K gets you the full outbound machine running. You can always add the content engine later. But content compounds &mdash; the sooner you start, the bigger the moat.</li>
           <li>You spent &pound;702 on the LinkedIn Live and got 177 warm leads. Imagine what a fully built AI system does over 90 days.</li>
         </ul>
       </div>
@@ -1452,27 +1709,27 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 </div>
 
 <!-- SLIDE 22: NEXT STEP / CLOSE -->
-<div class="slide center-v" data-slide="22">
-<div class="slide-inner text-center" style="justify-content:center; min-height:100%; display:flex; flex-direction:column;">
+<div class="slide" data-slide="22">
+<div class="slide-inner text-center">
   <p class="eyebrow mb-20">Next Step</p>
   <h2 class="mb-12">Start This Week</h2>
   <p class="subtitle mb-32" style="max-width:600px; margin-left:auto; margin-right:auto;">Attendee follow-up live by Friday. AI agents built within 30 days.</p>
 
-  <div class="grid-2 mb-32" style="max-width:700px; margin:0 auto; gap:24px; align-items:stretch;">
+  <div class="grid-2 mb-32" style="gap:24px; align-items:stretch;">
     <div class="card card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:32px;">
       <p style="font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-secondary); margin-bottom:8px;">Option A</p>
-      <p style="font-size:36px; font-weight:800; color:var(--accent); margin-bottom:8px;">&pound;5,000</p>
-      <p style="font-size:15px; color:var(--text-secondary);">AI Growth Engine</p>
+      <p style="font-size:36px; font-weight:800; color:var(--accent); margin-bottom:8px;">&pound;15,000</p>
+      <p style="font-size:15px; color:var(--text-secondary);">AI Outbound Engine</p>
     </div>
     <div class="card card-green card-sm" style="text-align:center; display:flex; flex-direction:column; justify-content:center; padding:32px;">
       <p style="font-size:14px; text-transform:uppercase; letter-spacing:0.1em; color:var(--green); margin-bottom:8px;">Option B (Recommended)</p>
-      <p style="font-size:36px; font-weight:800; color:var(--green); margin-bottom:8px;">&pound;10,000</p>
-      <p style="font-size:15px; color:var(--text-secondary);">Full Engine + Content</p>
+      <p style="font-size:36px; font-weight:800; color:var(--green); margin-bottom:8px;">&pound;24,000</p>
+      <p style="font-size:15px; color:var(--text-secondary);">Outbound + Content Engine</p>
     </div>
   </div>
 
-  <div class="quote-card mb-32" style="max-width:700px; margin-left:auto; margin-right:auto;">
-    <p>&ldquo;If all this did was close one additional customer at &pound;30K LTV... would it be worth &pound;5-10K?&rdquo;</p>
+  <div class="quote-card mb-32">
+    <p>&ldquo;If all this did was close one additional customer at $30K LTV... would it be worth &pound;15K?&rdquo;</p>
   </div>
 
   <p class="small muted" style="max-width:500px; margin:0 auto;">Dopamine Digital &mdash; Built for Ripple &mdash; March 2026</p>
@@ -1482,7 +1739,7 @@ h2 .text-accent { animation: headlineNeon 4s ease-in-out infinite; }
 </div><!-- /deck -->
 
 <div class="nav-bar" id="navBar"></div>
-<div class="nav-counter" id="navCounter">1 / 22</div>
+<div class="nav-counter" id="navCounter">1 / 24</div>
 
 <script>
 (function() {
