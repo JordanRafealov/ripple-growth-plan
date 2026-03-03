@@ -5,3 +5,5 @@
 *.webp
 .DS_Store
 newsletter-workflow.json
+.src.html
+password-template.html
